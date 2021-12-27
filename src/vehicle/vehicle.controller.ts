@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { vehicleDto } from './dto/vehicle.dto';
 import { VehicleService } from './vehicle.service';
@@ -33,4 +33,20 @@ export class VehicleController {
             };
         }
      }
-  }
+
+    @Get('/getProduct')
+    async find(@Query('vehicleName') vehicleName: string){
+        console.log('vehicleName')
+        try{
+            const response = await this.vehicleService.findVehicle(vehicleName)
+            return response
+        }
+        catch(error){
+            return{
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+            }
+        }
+        }
+    }
+  
