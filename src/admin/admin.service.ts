@@ -6,13 +6,13 @@ import { admin } from './schema/admin.schema';
 
 @Injectable()
 export class AdminService {
-    constructor(@InjectModel(admin.name) private userModel: Model<admin>) { }
+    constructor(@InjectModel(admin.name) private adminModel: Model<admin>) { }
 
 
     async Create(req: adminLogin) {
 
         try {
-            const loginRes = await this.userModel.findOne({ $or: [{ email: req.email }, { Mobile: req.mobileNum }] })
+            const loginRes = await this.adminModel.findOne({ $or: [{ email: req.email }, { Mobile: req.mobileNum }] })
 
             if (loginRes) {
                 return {
@@ -21,7 +21,7 @@ export class AdminService {
                 }
             }
 
-            const registerRes = await this.userModel.create(req)
+            const registerRes = await this.adminModel.create(req)
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
@@ -51,4 +51,41 @@ export class AdminService {
             };
         }
     }
+
+    async Login(req: adminLogin) {
+        try {
+
+            const loginRes = await this.adminModel.findOne({ $or: [{ Email: req.email }, { MobileNum: req.mobileNum }] }).lean()
+            if (loginRes) {
+                if (loginRes.password === req.password) {
+
+                    return {
+                        statusCode: HttpStatus.OK,
+                        message: "Login SuccessFully",
+                        authentication: {
+                            Email: loginRes.email
+                        }
+                    }
+                }
+
+                return {
+                    statusCode: HttpStatus.UNAUTHORIZED,
+                    message: "Invalid Password"
+                }
+
+            }
+            return {
+                statusCode: HttpStatus.NOT_FOUND,
+                message: "User Not Found"
+
+            }
+        } catch (error) {
+            return {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            };
+        }
+    }
 }
+
+

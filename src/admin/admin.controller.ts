@@ -22,4 +22,18 @@ export class AdminController {
 
   }
   
+  @Post('/login')
+  async login(@Body() req:adminLogin ) {
+      try {
+          const result = await this.adminService.Login(req)
+          return result
+      } catch (error) {
+          return {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: error.message,
+          };
+      }
+
+  }
+
 }
