@@ -50,6 +50,32 @@ export class VehicleInformationService {
            };
         }
    }
-}
+
+   async findVehicle(vehicleName: string){
+       try{
+           const vehicleResp = await this.vehicleModel.findOne({vehicleName: vehicleName})
+           if(vehicleResp){
+               return{
+                   StatusCode: HttpStatus.OK,
+                   Message: "vehicle Information",
+                   Data: {
+                       vehicleInfo: vehicleResp
+                   }
+               }
+           }
+           return{
+               StatusCode: HttpStatus.BAD_REQUEST,
+               Message: "Invalid Request"
+           }
+        }
+           catch(error){
+           return{
+               StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               Message: error
+           }
+           }
+       }
+   }
+
 
 

@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { VehicleInformationService } from './vehicle-information.service';
 import { diskStorage } from 'multer';
@@ -35,6 +35,21 @@ export class VehicleInformationController {
         }
 
     }
-  }
+
+    @Get('/getVehicle')
+    async find(@Query('vehicleName') vehicleName: string){
+        try{
+            const response = await this.vehicleInformationService.findVehicle(vehicleName)
+            return response
+        }
+        catch(error){
+            return{
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+            }
+        }
+        }
+    }
+ 
 
 

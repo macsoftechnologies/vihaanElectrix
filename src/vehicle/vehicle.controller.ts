@@ -36,7 +36,7 @@ export class VehicleController {
 
     @Get('/getProduct')
     async find(@Query('vehicleName') vehicleName: string){
-        console.log('vehicleName')
+        //console.log('vehicleName')
         try{
             const response = await this.vehicleService.findVehicle(vehicleName)
             return response
@@ -47,6 +47,6 @@ export class VehicleController {
                 Message: error
             }
         }
-        }
+      }
     }
   
