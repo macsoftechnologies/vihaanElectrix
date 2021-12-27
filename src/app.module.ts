@@ -5,12 +5,14 @@ import { AppService } from './app.service';
 import { VehicleModule } from './vehicle/vehicle.module';
 import { MongooseConfigService } from './_common/configs/mongoose.config';
 import { VehicleInformationModule } from './vehicle-information/vehicle-information.module';
+import { AdminModule } from './admin/admin.module';
 
 
 @Module({
   imports: [ MongooseModule.forRootAsync({useClass : MongooseConfigService}),
    VehicleModule,
-   VehicleInformationModule ],
+   VehicleInformationModule,
+   AdminModule ],
   controllers: [AppController],
   providers: [AppService],
 })
