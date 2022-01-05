@@ -6,13 +6,15 @@ import { VehicleModule } from './vehicle/vehicle.module';
 import { MongooseConfigService } from './_common/configs/mongoose.config';
 import { VehicleInformationModule } from './vehicle-information/vehicle-information.module';
 import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 
 @Module({
   imports: [ MongooseModule.forRootAsync({useClass : MongooseConfigService}),
    VehicleModule,
    VehicleInformationModule,
-   AdminModule ],
+   AdminModule,
+   UserModule ],
   controllers: [AppController],
   providers: [AppService],
 })
