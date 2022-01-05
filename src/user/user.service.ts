@@ -13,14 +13,14 @@ export class UserService {
     async Create(req: userRegisterDto) {
 
         try {
-            const loginRes = await this.adminModel.findOne({ $or: [{ email: req.email }, { Mobile: req.mobileNum }] })
+            // const loginRes = await this.adminModel.findOne({ $or: [{ email: req.email }, { Mobile: req.mobileNum }] })
 
-            if (loginRes) {
-                return {
-                    statusCode: HttpStatus.CONFLICT,
-                    message: `User Already Exits with ${loginRes.email} and ${loginRes.mobileNum}`
-                }
-            }
+            // if (loginRes) {
+            //     return {
+            //         statusCode: HttpStatus.CONFLICT,
+            //         message: `User Already Exits with ${loginRes.email} and ${loginRes.mobileNum}`
+            //     }
+            // }
 
             const registerRes = await this.adminModel.create(req)
             if (registerRes) {
@@ -32,7 +32,8 @@ export class UserService {
                             FirstName: registerRes.fname,
                             Email: registerRes.email,
                             MobileNum: registerRes.mobileNum
-                           }
+                        
+                        }
                     }
                 }
 
