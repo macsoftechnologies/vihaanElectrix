@@ -7,6 +7,8 @@ import { MongooseConfigService } from './_common/configs/mongoose.config';
 import { VehicleInformationModule } from './vehicle-information/vehicle-information.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
+import { LoanTypeModule } from './loan-type/loan-type.module';
+import { UploadTypeModule } from './upload-type/upload-type.module';
 
 
 @Module({
@@ -14,7 +16,9 @@ import { UserModule } from './user/user.module';
    VehicleModule,
    VehicleInformationModule,
    AdminModule,
-   UserModule ],
+   UserModule,
+   LoanTypeModule,
+   UploadTypeModule ],
   controllers: [AppController],
   providers: [AppService],
 })

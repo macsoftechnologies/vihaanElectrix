@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
 import { userRegisterDto } from './dto/user.dto';
 import { UserService } from './user.service';
 
@@ -34,6 +34,20 @@ export class UserController {
           };
       }
 
+  }
+
+  @Get('/listOfUsers')
+  async listOfUsers() {
+      console.log()
+      try {
+          const response = await this.userService.usersList()
+          return response
+      } catch (error) {
+          return {
+              StatusCode : HttpStatus.INTERNAL_SERVER_ERROR,
+              Message : error
+          }
+      }
   }
 
 }

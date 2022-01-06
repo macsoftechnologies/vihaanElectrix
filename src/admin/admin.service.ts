@@ -1,13 +1,14 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { users } from 'src/user/schema/user.schema';
+import { vehicleDto } from 'src/vehicle/dto/vehicle.dto';
 import { adminLogin } from './dto/admin.dto';
 import { admin } from './schema/admin.schema';
 
 @Injectable()
 export class AdminService {
     constructor(@InjectModel(admin.name) private adminModel: Model<admin>) { }
-
 
     async Create(req: adminLogin) {
 
@@ -86,6 +87,34 @@ export class AdminService {
             };
         }
     }
-}
 
+//     async vehiclesList() {
+//         try {
+    
+//             const userResponse = await this.vehicleModel.find()
+//             console.log(userResponse)
+//             if (userResponse) {
+//                 return {
+//                     StatusCode: HttpStatus.OK,
+//                     Message: 'List of Vehicles',
+//                     Data: {
+//                         UserDetails: userResponse
+//                     }
+    
+//                 }
+//             }
+//             return {
+//                 StatusCode: HttpStatus.BAD_REQUEST,
+//                 Message: "InValid Request"
+//             }
+    
+//         } catch (error) {
+//             return {
+//                 StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+//                 Message: error
+    
+//             }
+//         }
+// }
+}
 

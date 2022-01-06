@@ -73,4 +73,35 @@ export class VehicleService {
            }
        }
    }
+
+   
+   async vehiclesList() {
+    try {
+
+        const userResponse = await this.vehicleModel.find()
+        console.log(userResponse)
+        if (userResponse) {
+            return {
+                StatusCode: HttpStatus.OK,
+                Message: 'List of Vehicles',
+                Data: {
+                    UserDetails: userResponse
+                }
+
+            }
+        }
+        return {
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+
+    } catch (error) {
+        return {
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+
+        }
+    }
+}
+
 }

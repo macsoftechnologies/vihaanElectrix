@@ -48,5 +48,19 @@ export class VehicleController {
             }
         }
       }
+
+      @Get('/listOfVehicles')
+      async listOfVehicles() {
+          console.log()
+          try {
+              const response = await this.vehicleService.vehiclesList()
+              return response
+          } catch (error) {
+              return {
+                  StatusCode : HttpStatus.INTERNAL_SERVER_ERROR,
+                  Message : error
+              }
+          }
+      }
     }
   

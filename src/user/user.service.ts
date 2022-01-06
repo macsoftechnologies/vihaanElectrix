@@ -7,7 +7,7 @@ import { users } from './schema/user.schema';
 
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(users.name) private adminModel: Model<users>) { }
+    constructor(@InjectModel(users.name) private usersModel: Model<users>) { }
 
 
     async Create(req: userRegisterDto) {
@@ -22,7 +22,7 @@ export class UserService {
             //     }
             // }
 
-            const registerRes = await this.adminModel.create(req)
+            const registerRes = await this.usersModel.create(req)
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
@@ -55,7 +55,7 @@ export class UserService {
     async Login(req: userRegisterDto) {
         try {
 
-            const loginRes = await this.adminModel.findOne({ $or: [{ Email: req.email }, { MobileNum: req.mobileNum }] }).lean()
+            const loginRes = await this.usersModel.findOne({ $or: [{ Email: req.email }, { MobileNum: req.mobileNum }] }).lean()
             if (loginRes) {
                 if (loginRes.password === req.password) {
 
@@ -84,6 +84,35 @@ export class UserService {
                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
                 message: error.message,
             };
+        }
+    }
+
+    async usersList() {
+        try {
+    
+            const userResponse = await this.usersModel.find()
+            console.log(userResponse)
+            if (userResponse) {
+                return {
+                    StatusCode: HttpStatus.OK,
+                    Message: 'List of Users',
+                    Data: {
+                        UserDetails: userResponse
+                    }
+    
+                }
+            }
+            return {
+                StatusCode: HttpStatus.BAD_REQUEST,
+                Message: "InValid Request"
+            }
+    
+        } catch (error) {
+            return {
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+    
+            }
         }
     }
 }
