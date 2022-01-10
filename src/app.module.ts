@@ -9,6 +9,8 @@ import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { LoanTypeModule } from './loan-type/loan-type.module';
 import { UploadTypeModule } from './upload-type/upload-type.module';
+import { LoanModule } from './loan/loan.module';
+import { LoanDetailsModule } from './loan-details/loan-details.module';
 
 
 @Module({
@@ -18,7 +20,9 @@ import { UploadTypeModule } from './upload-type/upload-type.module';
    AdminModule,
    UserModule,
    LoanTypeModule,
-   UploadTypeModule ],
+   UploadTypeModule,
+   LoanModule,
+   LoanDetailsModule ],
   controllers: [AppController],
   providers: [AppService],
 })
