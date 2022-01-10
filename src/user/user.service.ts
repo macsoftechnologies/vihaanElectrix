@@ -26,7 +26,7 @@ export class UserService {
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
-                    message: "Registered SuccessFully",
+                    message: "User Registered SuccessFully",
                     data: {
                         authentication: {
                             FirstName: registerRes.fname,

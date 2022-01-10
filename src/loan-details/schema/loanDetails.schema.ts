@@ -5,6 +5,8 @@ import { v4 as uuid } from 'uuid';
 @Schema({ timestamps: true })
 export class loanDetails extends Document{
     @Prop()
+    userId: string
+    @Prop()
     loanPurpose: string
     @Prop()
     period : string

@@ -15,7 +15,7 @@ export class LoanTypeService {
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
-                    message: "Registered SuccessFully",
+                    message: "Loan type added SuccessFully",
                     data: {
                         authentication: {
                             userId: registerRes.userId,

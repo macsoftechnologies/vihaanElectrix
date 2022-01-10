@@ -25,16 +25,15 @@ export class UploadTypeService {
            }
               console.log(req);
            // return false;
-          const createVehicleResp = await this.uploadTypeModel.create(req)
+          const documentsResp = await this.uploadTypeModel.create(req)
           
-            if (createVehicleResp) {
+            if (documentsResp) {
                return {
                    statusCode: HttpStatus.OK,
-                   message: "Registered SuccessFully",
+                   message: "documents added SuccessFully",
                    data: {
-                       UserRegistration: {
-                           createVehicleRes: createVehicleResp
-                       }
+                           documentsRes: documentsResp
+                       
                    }
                }
            }

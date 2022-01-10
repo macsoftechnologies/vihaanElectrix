@@ -23,7 +23,6 @@ export class LoanService {
                             amount: registerRes.amount
                         }
                     }
-            
             }
             return {
                 statusCode: HttpStatus.BAD_REQUEST,
