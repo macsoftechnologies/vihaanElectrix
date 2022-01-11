@@ -22,6 +22,9 @@ export class LoanService {
                             period: registerRes.period,
                             amount: registerRes.amount
                         }
+
+
+                        
                     }
             }
             return {
