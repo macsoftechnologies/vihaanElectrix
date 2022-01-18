@@ -4,10 +4,11 @@ import { VehicleInformationService } from './vehicle-information.service';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { vehicleInfoDto } from './dto/vehicalInformation.dto';
+import { ApiTags } from '@nestjs/swagger';
 @Controller('vehicle-information')
 export class VehicleInformationController {
   constructor(private readonly vehicleInformationService: VehicleInformationService) {}
-
+  @ApiTags('uploadType')
     
   @Post('/vehicleInfo')
     @UseInterceptors(

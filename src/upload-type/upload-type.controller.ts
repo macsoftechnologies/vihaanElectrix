@@ -4,10 +4,15 @@ import { extname } from 'path';
 import { UploadTypeService } from './upload-type.service';
 import { diskStorage } from 'multer'
 import { uploadTypeDto } from './dto/uploadtype.dto';
+import { ApiCreatedResponse, ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
+@ApiTags('uploadType')
 @Controller('upload-type')
 export class UploadTypeController {
   constructor(private readonly uploadTypeService: UploadTypeService) {}
   @Post('/documentsUpload')
+  
+  @ApiCreatedResponse({ description: 'uploadType details has been added successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' }) 
   @UseInterceptors(
       AnyFilesInterceptor({
           storage: diskStorage({

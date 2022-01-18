@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class vehicleDto{
-    @ApiProperty()
+    @ApiProperty({type: String, default: ''})
     vehicleName: string;
 
     @ApiProperty()

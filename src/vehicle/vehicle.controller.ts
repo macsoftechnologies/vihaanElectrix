@@ -4,12 +4,16 @@ import { vehicleDto } from './dto/vehicle.dto';
 import { VehicleService } from './vehicle.service';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+@ApiTags('vehicle')
 @Controller('vehicle')
 export class VehicleController {
   constructor(private readonly vehicleService: VehicleService) {}
-  
+
   @Post('/productsUpload')
-    @UseInterceptors(
+  @ApiCreatedResponse({ description: 'vehicle details has been added successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' })  
+  @UseInterceptors(
         AnyFilesInterceptor({
             storage: diskStorage({
                 destination: './files',
@@ -35,6 +39,9 @@ export class VehicleController {
      }
 
     @Get('/getProduct')
+    
+  @ApiCreatedResponse({ description: 'vehicle details fetched successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' })
     async find(@Query('vehicleName') vehicleName: string){
         //console.log('vehicleName')
         try{
@@ -48,8 +55,9 @@ export class VehicleController {
             }
         }
       }
-
-      @Get('/listOfVehicles')
+  @Get('/listOfVehicles')
+  @ApiCreatedResponse({ description: 'vehicle details has been fetched successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' }) 
       async listOfVehicles() {
           console.log()
           try {

@@ -1,12 +1,16 @@
 import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
+import { ApiCreatedResponse, ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 import { userRegisterDto } from './dto/user.dto';
 import { UserService } from './user.service';
-
+@ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService:  UserService) {}
 
   @Post('/register') 
+  
+  @ApiCreatedResponse({ description: 'user details has been added successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' }) 
   async create(@Body() req: userRegisterDto) {
       try {
           const result = await this.userService.Create(req)
@@ -23,6 +27,9 @@ export class UserController {
   }
   
   @Post('/login')
+  
+  @ApiCreatedResponse({ description: 'user details has been added successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' }) 
   async login(@Body() req:userRegisterDto ) {
       try {
           const result = await this.userService.Login(req)
@@ -37,6 +44,9 @@ export class UserController {
   }
 
   @Get('/listOfUsers')
+  
+  @ApiCreatedResponse({ description: 'user details has been fetched successfully'})
+  @ApiForbiddenResponse({ description: 'forbidden.' }) 
   async listOfUsers() {
       console.log()
       try {
