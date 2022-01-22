@@ -7,7 +7,7 @@ export class loanPeriod extends Document{
     @Prop()
     id: string
     @Prop()
-    period: [];
+    period: string;
 }
  
 export const  loanPeriodSchema = SchemaFactory.createForClass(loanPeriod);

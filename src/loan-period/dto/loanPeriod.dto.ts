@@ -4,5 +4,5 @@ export class loanPeriodDto{
     @ApiProperty()
     id: string
     @ApiProperty()
-    loanPeriod: [];
+    loanPeriod: string;
 }
