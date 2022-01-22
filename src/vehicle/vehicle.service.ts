@@ -30,12 +30,12 @@ export class VehicleService {
             if (createVehicleResp) {
                return {
                    statusCode: HttpStatus.OK,
-                   message: "Registered SuccessFully",
-                   data: {
+                //    message: "Registered SuccessFully",
+                //    data: {
                        UserRegistration: {
                            createVehicleRes: createVehicleResp
                        }
-                   }
+            //        }
                }
            }
             return {
@@ -56,10 +56,10 @@ export class VehicleService {
            if(vehicleResponse){
                return{
                    StatusCode: HttpStatus.OK,
-                   Message: "Vehicle Details",
-                   Data: {
+                //    Message: "Vehicle Details",
+                //    Data: {
                        vehicleDetails: vehicleResponse
-                   }
+                  // }
                }
            }
            return{

@@ -15,13 +15,13 @@ export class LoanTypeService {
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
-                    message: "Loan type added SuccessFully",
-                    data: {
-                        authentication: {
+                    // message: "Loan type added SuccessFully",
+                    // data: {
+                    //     authentication: {
                             userId: registerRes.userId,
                             loanType: registerRes.typeLoan
-                        }
-                    }
+                    //     }
+                    // }
                 }
 
             }

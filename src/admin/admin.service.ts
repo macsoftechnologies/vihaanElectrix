@@ -34,13 +34,9 @@ export class AdminService {
                         }
                     }
                 }
-
+              
             }
-
-
-
-
-            return {
+             return {
                 statusCode: HttpStatus.BAD_REQUEST,
                 message: "Invalid Request"
             }

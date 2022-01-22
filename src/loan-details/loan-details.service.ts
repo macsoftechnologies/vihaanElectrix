@@ -15,10 +15,10 @@ export class LoanDetailsService {
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
-                    message: "Loan-details added SuccessFully",
-                    data: {
+                    // message: "Loan-details added SuccessFully",
+                    // data: {
                        response: registerRes
-                    }
+                   // }
                 }
 
             }

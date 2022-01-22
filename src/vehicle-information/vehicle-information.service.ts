@@ -31,18 +31,20 @@ export class VehicleInformationService {
             if (createVehicleResp) {
                return {
                    statusCode: HttpStatus.OK,
-                   message: "Registered SuccessFully",
-                   data: {
-                       UserRegistration: {
+                //    message: "Registered SuccessFully",
+                //    data: {
+                //        UserRegistration: {
                            createVehicleRes: createVehicleResp
-                       }
-                   }
+                //        }
+                //    }
                }
            }
             return {
                statusCode: HttpStatus.BAD_REQUEST,
                message: "Invalid Request"
            }
+
+           
        } catch (error) {
            return {
                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -57,10 +59,10 @@ export class VehicleInformationService {
            if(vehicleResp){
                return{
                    StatusCode: HttpStatus.OK,
-                   Message: "vehicle Information",
-                   Data: {
+                //    Message: "vehicle Information",
+                //    Data: {
                        vehicleInfo: vehicleResp
-                   }
+                 //  }
                }
            }
            return{

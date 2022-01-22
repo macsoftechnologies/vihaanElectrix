@@ -16,12 +16,12 @@ export class LoanService {
             if (registerRes) {
                 return {
                     statusCode: HttpStatus.OK,
-                    message: "loan details added successfully",
-                    data: {
+                   // message: "loan details added successfully",
+                   // data: {
                             vehicleName: registerRes.vehicleName,
                             period: registerRes.period,
                             amount: registerRes.amount
-                        }
+                     //   }
 
 
                         

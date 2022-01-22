@@ -13,12 +13,11 @@ export class AdminController {
       try {
           const result = await this.adminService.Create(req)
           console.log("result", result);
-          
           return result
       } catch (error) {
           return {
               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-              message: error.message,
+              message: error.message
           };
       }
 
@@ -32,7 +31,7 @@ export class AdminController {
       } catch (error) {
           return {
               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-              message: error.message,
+              message: error.message
           };
       }
 

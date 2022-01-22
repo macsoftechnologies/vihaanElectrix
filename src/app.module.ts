@@ -11,6 +11,8 @@ import { LoanTypeModule } from './loan-type/loan-type.module';
 import { UploadTypeModule } from './upload-type/upload-type.module';
 import { LoanModule } from './loan/loan.module';
 import { LoanDetailsModule } from './loan-details/loan-details.module';
+import { VehicleDetailsModule } from './vehicle-details/vehicle-details.module';
+import { LoanPeriodModule } from './loan-period/loan-period.module';
 
 
 @Module({
@@ -22,7 +24,9 @@ import { LoanDetailsModule } from './loan-details/loan-details.module';
    LoanTypeModule,
    UploadTypeModule,
    LoanModule,
-   LoanDetailsModule ],
+   LoanDetailsModule,
+   VehicleDetailsModule,
+   LoanPeriodModule ],
   controllers: [AppController],
   providers: [AppService],
 })
