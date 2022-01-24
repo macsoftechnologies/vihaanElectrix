@@ -1,26 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class vehicleInfoDto{
-     @ApiProperty()
-     vehicleInfoId: string;
-    @ApiProperty()
-    image: []
-   
-    @ApiProperty()
-    vehicleName: string;
-
-    @ApiProperty()
-    capacity: string;
-
-    @ApiProperty()
-    price: string;
-
+export class vehicleProperties{
+    
     @ApiProperty()
     eBikes: string;
-
-
+    
     @ApiProperty()
-    offers: string;
+    capacity: string;
 
     @ApiProperty()
     trueRange: string;
@@ -39,11 +25,31 @@ export class vehicleInfoDto{
 
     @ApiProperty()
     usableCapacity: string;
+}
+
+export class vehicleInfoDto{
+     @ApiProperty()
+     vehicleInfoId: string;
+    @ApiProperty()
+    image: []
+   
+    @ApiProperty()
+    vehicleName: string;
+
+    @ApiProperty()
+    vehicleDetails: vehicleProperties[]
+
+    @ApiProperty()
+    price: string;
+
+    @ApiProperty()
+    offers: string;
 
     @ApiProperty()
     colors: []
  
 }
+
 
 export class Price{
     @ApiProperty()  
