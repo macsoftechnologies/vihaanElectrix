@@ -38,9 +38,9 @@ export class VehicleInformationController {
     }
 
     @Get('/getVehicle')
-    async find(@Query('vehicleName') vehicleName: string){
+    async find(@Query('vehicleInfoId') vehicleInfoId: string){
         try{
-            const response = await this.vehicleInformationService.findVehicle(vehicleName)
+            const response = await this.vehicleInformationService.findVehicle(vehicleInfoId)
             return response
         }
         catch(error){
