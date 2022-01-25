@@ -24,6 +24,9 @@ export class VehicleInformationController {
     )
     async create(@Body() req: vehicleInfoDto, @UploadedFiles() image) {
         try {
+           // console.log(req,"request")
+            req.vehicleDetails= JSON.parse(req.vehicleDetails)
+            console.log(req,"request")
             const result = await this.vehicleInformationService.Create(req, image)
             console.log("result", result);
             

@@ -5,28 +5,21 @@ import { v4 as uuid } from 'uuid';
 
 export class vehicleProperties{
     
-    @Prop()
+    
     eBikes: string;
 
-    @Prop()
     capacity: string;
 
-    @Prop()
     trueRange: string;
 
-    @Prop()
     peakPower: string;
 
-    @Prop()
     torque: string;
 
-    @Prop()
     topSpeed: string;
 
-    @Prop()
     chargingTime: string;
 
-    @Prop()
     usableCapacity: string;
 }
 
@@ -49,8 +42,8 @@ export class vehicleInfo extends Document{
     @Prop()
     offers: string;
    
-    @Prop()
-    vehicleDetails: vehicleProperties[]
+    @Prop({type: Object})
+    vehicleDetails: object
 
     @Prop()
     colors: []

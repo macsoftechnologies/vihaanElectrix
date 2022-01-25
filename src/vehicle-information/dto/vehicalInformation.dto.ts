@@ -1,28 +1,20 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class vehicleProperties{
-    
     @ApiProperty()
     eBikes: string;
-    
     @ApiProperty()
     capacity: string;
-
     @ApiProperty()
     trueRange: string;
-
     @ApiProperty()
     peakPower: string;
-
     @ApiProperty()
     torque: string;
-
     @ApiProperty()
     topSpeed: string;
-
     @ApiProperty()
     chargingTime: string;
-
     @ApiProperty()
     usableCapacity: string;
 }
@@ -37,7 +29,7 @@ export class vehicleInfoDto{
     vehicleName: string;
 
     @ApiProperty()
-    vehicleDetails: vehicleProperties[]
+    vehicleDetails: string
 
     @ApiProperty()
     price: string;
