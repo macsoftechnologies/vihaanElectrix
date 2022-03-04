@@ -9,8 +9,8 @@ import * as express from 'express';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const swaggerConfig = new DocumentBuilder()
-  .setTitle('parseAdmin API')
-  .setDescription('parse admin apis')
+  .setTitle('vElectrix API')
+  .setDescription('vElectrix apis')
   .setVersion('1.0')
   .build();
  const doc = SwaggerModule.createDocument(app, swaggerConfig);

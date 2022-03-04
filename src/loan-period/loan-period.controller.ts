@@ -39,10 +39,7 @@ export class LoanPeriodController {
       }
 
       @Get('/getPeriod')
-    
-      // @ApiCreatedResponse({ description: 'vehicle details fetched successfully'})
-      // @ApiForbiddenResponse({ description: 'forbidden.' })
-         async find(@Query('id') id: string){
+       async find(@Query('id') id: string){
             //console.log('vehicleName')
             try{
                 const response = await this.loanPeriodService.findPeriod(id)

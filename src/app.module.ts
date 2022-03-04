@@ -12,6 +12,7 @@ import { UploadTypeModule } from './upload-type/upload-type.module';
 import { LoanModule } from './loan/loan.module';
 import { LoanDetailsModule } from './loan-details/loan-details.module';
 import { LoanPeriodModule } from './loan-period/loan-period.module';
+import { VEnergyModule } from './v-energy/v-energy.module';
 
 
 @Module({
@@ -24,7 +25,8 @@ import { LoanPeriodModule } from './loan-period/loan-period.module';
    UploadTypeModule,
    LoanModule,
    LoanDetailsModule,
-   LoanPeriodModule ],
+   LoanPeriodModule,
+   VEnergyModule ],
   controllers: [AppController],
   providers: [AppService],
 })

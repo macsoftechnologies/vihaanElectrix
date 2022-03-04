@@ -1,21 +1,80 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class vehicleDto{
-    @ApiProperty({type: String, default: ''})
+    @ApiProperty()
+    vehicleId: string
+    @ApiProperty()
     vehicleName: string;
+  
+    @ApiProperty()
+    model: string;
+    @ApiProperty()
+    tyre: string;
 
     @ApiProperty()
-    price: string;
+    motor: string;
 
     @ApiProperty()
-    offers: string;
+    controller: string;
 
     @ApiProperty()
-    capacity: string;
+    battery: string;
 
     @ApiProperty()
-    image: []
-    
+    batteryCasing: string;
+
+    @ApiProperty()
+    cells: string;
+
+    @ApiProperty()
+    bms: string;
+
+    @ApiProperty()
+    chargerOutput: string;
+
+    @ApiProperty()
+    externalChargingPort: string;
+
+    @ApiProperty()
+    brake: string;
+
+    @ApiProperty()
+    regenerativeBraking: string;
+
+    @ApiProperty()
+    display: string;
+
+    @ApiProperty()
+    headLamp: string;
+
+    @ApiProperty()
+    refelector: string;
+
+    @ApiProperty()
+    blinkers: string;
+
+    @ApiProperty()
+    brakeLights: string;
+
+    @ApiProperty()
+    mudGuards: string;
+
+    @ApiProperty()
+    seat: string;
+
+    @ApiProperty()
+    vehicleImage: string;
+    @ApiProperty()
+    throttle: string;
+    @ApiProperty()
+    gradeablity: string;
+    @ApiProperty()
+    storage: string;
+    @ApiProperty()
+    security: string;
+    @ApiProperty()
+    ladiesFootrest: string
+
 }
 
 

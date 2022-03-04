@@ -12,8 +12,8 @@ export class MongooseConfigService implements MongooseOptionsFactory {
     
     return {
       // uri:"",
-      uri:'mongodb+srv://macsof:macsof@nextlevelcarwash.yjs3i.mongodb.net/parseAdmin?retryWrites=true&w=majority',
-      //useCreateIndex: true,
+      uri:'mongodb+srv://macsof:macsof@nextlevelcarwash.yjs3i.mongodb.net/vElectrix?retryWrites=true&w=majority',
+      //useCreateIndex: true
       keepAlive: true,
       useNewUrlParser: true,
       autoIndex: true,

@@ -18,10 +18,9 @@ export class VehicleService {
                    }
                    const randomNumber = Math.floor((Math.random() * 1000000) + 1);
                    return doc.filename
-                   
-               })
+                  })
 
-               req.image = reqDoc.toString()
+               req.vehicleImage = reqDoc.toString()
            }
               console.log(req);
            // return false;

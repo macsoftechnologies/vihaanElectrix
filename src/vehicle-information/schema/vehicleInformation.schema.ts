@@ -5,22 +5,14 @@ import { v4 as uuid } from 'uuid';
 
 export class vehicleProperties{
     
-    
-    eBikes: string;
-
-    capacity: string;
-
-    trueRange: string;
-
-    peakPower: string;
-
-    torque: string;
-
-    topSpeed: string;
-
-    chargingTime: string;
-
-    usableCapacity: string;
+     eBikes: string;
+     capacity: string;
+     trueRange: string;
+     peakPower: string;
+     torque: string;
+     topSpeed: string;
+     chargingTime: string;
+     usableCapacity: string;
 }
 
 @Schema({ timestamps: true })
