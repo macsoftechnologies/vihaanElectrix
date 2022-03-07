@@ -40,12 +40,10 @@ export class VehicleController {
 
     @Get('/getProduct')
     
-  @ApiCreatedResponse({ description: 'vehicle details fetched successfully'})
-  @ApiForbiddenResponse({ description: 'forbidden.' })
-    async find(@Query('vehicleName') vehicleName: string){
+    async find(@Query('vehicleId') vehicleId: string){
         //console.log('vehicleName')
         try{
-            const response = await this.vehicleService.findVehicle(vehicleName)
+            const response = await this.vehicleService.findVehicle(vehicleId)
             return response
         }
         catch(error){
