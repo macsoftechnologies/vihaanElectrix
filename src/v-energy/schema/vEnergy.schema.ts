@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 import { v4 as uuid } from 'uuid';
 export class loc{
     @Prop()
-    longititude: string;
+    longitude: string;
     @Prop()
     latitude: string
 }
