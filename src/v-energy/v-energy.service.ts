@@ -75,11 +75,8 @@ export class VEnergyService {
             if(vehicleResponse){
                 return{
                     StatusCode: HttpStatus.OK,
-                 //    Message: "Vehicle Details",
-                 //    Data: {
-                        EnergyStationsResponse: vehicleResponse
-                   // }
-                }
+                   EnergyStationsResponse: vehicleResponse
+                   }
             }
             return{
                 StatusCode: HttpStatus.BAD_REQUEST,

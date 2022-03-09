@@ -13,6 +13,7 @@ import { LoanModule } from './loan/loan.module';
 import { LoanDetailsModule } from './loan-details/loan-details.module';
 import { LoanPeriodModule } from './loan-period/loan-period.module';
 import { VEnergyModule } from './v-energy/v-energy.module';
+import { BrandModule } from './brand/brand.module';
 
 
 @Module({
@@ -26,7 +27,8 @@ import { VEnergyModule } from './v-energy/v-energy.module';
    LoanModule,
    LoanDetailsModule,
    LoanPeriodModule,
-   VEnergyModule ],
+   VEnergyModule,
+   BrandModule ],
   controllers: [AppController],
   providers: [AppService],
 })
