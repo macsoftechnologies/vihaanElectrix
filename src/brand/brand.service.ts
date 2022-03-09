@@ -36,4 +36,56 @@ export class BrandService {
         }
     }
 
+    async brandList() {
+        try {
+    
+            const brands = await this.brandModel.find()
+            console.log(brands)
+            if (brands) {
+                return {
+                    StatusCode: HttpStatus.OK,
+                    Message: 'List of Brands',
+                    Data: {
+                        brandsList: brands 
+                    }
+    
+                }
+            }
+            return {
+                StatusCode: HttpStatus.BAD_REQUEST,
+                Message: "InValid Request"
+            }
+    
+        } catch (error) {
+            return {
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+    
+            }
+        }
+    }
+
+    
+
+async findPeriod(brandId: string){
+    try{
+       const vehicleResponse = await this.brandModel.findOne({brandId: brandId})
+        if(vehicleResponse){
+            return{
+                StatusCode: HttpStatus.OK,
+               EnergyStationsResponse: vehicleResponse
+               }
+        }
+        return{
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+    } catch(error){
+        return{
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+        }
+    }
+}
+
 }

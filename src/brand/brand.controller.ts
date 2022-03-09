@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Query } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { brandDto } from './dto/brand.dto';
 
@@ -19,4 +19,31 @@ export class BrandController {
           };
       }
 }
+@Get('/brandList')
+async list() {
+    try {
+        const result = await this.brandService.brandList()
+        console.log("result", result);
+        return result
+    } catch (error) {
+        return {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: error.message
+        };
+    }
+}
+@Get('/getBrand')
+async find(@Query('brandId') brandId: string){
+     //console.log('vehicleName')
+     try{
+         const response = await this.brandService.findPeriod(brandId)
+         return response
+     }
+     catch(error){
+         return{
+             StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             Message: error
+         }
+     }
+    }
 }

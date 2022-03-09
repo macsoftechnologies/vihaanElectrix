@@ -14,6 +14,7 @@ import { LoanDetailsModule } from './loan-details/loan-details.module';
 import { LoanPeriodModule } from './loan-period/loan-period.module';
 import { VEnergyModule } from './v-energy/v-energy.module';
 import { BrandModule } from './brand/brand.module';
+import { BookRideModule } from './book-ride/book-ride.module';
 
 
 @Module({
@@ -28,7 +29,8 @@ import { BrandModule } from './brand/brand.module';
    LoanDetailsModule,
    LoanPeriodModule,
    VEnergyModule,
-   BrandModule ],
+   BrandModule,
+   BookRideModule ],
   controllers: [AppController],
   providers: [AppService],
 })
