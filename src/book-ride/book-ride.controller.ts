@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Post, Query } from '@nestjs/common';
 import { BookRideService } from './book-ride.service';
 import { bookRideDto } from './dto/bookRide.dto';
 
@@ -18,5 +18,19 @@ export class BookRideController {
       };
   }
   }
-
+ 
+@Get('/getRider')
+async find(@Query('rideId') brandId: string){
+     //console.log('vehicleName')
+     try{
+         const response = await this.bookRideService.findRide(brandId)
+         return response
+     }
+     catch(error){
+         return{
+             StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             Message: error
+         }
+     }
+    }
 }
