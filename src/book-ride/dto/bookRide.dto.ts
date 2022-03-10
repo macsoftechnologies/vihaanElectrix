@@ -2,6 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export class bookRideDto{
     @ApiProperty()
+    rideId: string;
+    @ApiProperty()
     name: string;
     @ApiProperty()
     aadharNo : string;

@@ -8,10 +8,23 @@ import { brand } from './schema/brand.schema';
 export class BrandService {
 
     constructor(@InjectModel(brand.name) private brandModel: Model<brand>) { }
-    async Create(req: brandDto) {
+    async Create(req: brandDto, image) {
 
         try {
-
+            if (image) {
+                const reqDoc = image.map((doc, index) => {
+                    let IsPrimary = false
+                    if (index == 0) {
+                        IsPrimary = true
+                    }
+                    const randomNumber = Math.floor((Math.random() * 1000000) + 1);
+                    return doc.filename
+                   })
+ 
+                req.logo = reqDoc.toString()
+            }
+               console.log(req);
+            
         const brands = await this.brandModel.create(req)
           if (brands) {
                 return {
@@ -67,7 +80,7 @@ export class BrandService {
 
     
 
-async findPeriod(brandId: string){
+async findBrand(brandId: string){
     try{
        const vehicleResponse = await this.brandModel.findOne({brandId: brandId})
         if(vehicleResponse){
@@ -88,4 +101,28 @@ async findPeriod(brandId: string){
     }
 }
 
+
+async getBrand(brandId: string){
+    try{
+       const vehicleResponse = await this.brandModel.findOne({brandId: brandId})
+        if(vehicleResponse){
+            return{
+                StatusCode: HttpStatus.OK,
+             //    Message: "Vehicle Details",
+             //    Data: {
+                    vehicleDetails: vehicleResponse
+               // }
+            }
+        }
+        return{
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+    } catch(error){
+        return{
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+        }
+    }
+}
 }

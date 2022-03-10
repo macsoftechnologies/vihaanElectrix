@@ -32,5 +32,26 @@ export class BookRideService {
             };
         }
     }
-
+  
+    async findRide(rideId: string){
+        try{
+           const vehicleResponse = await this.bookRideModel.findOne({rideId: rideId})
+            if(vehicleResponse){
+                return{
+                    StatusCode: HttpStatus.OK,
+                   EnergyStationsResponse: vehicleResponse
+                   }
+            }
+            return{
+                StatusCode: HttpStatus.BAD_REQUEST,
+                Message: "InValid Request"
+            }
+        } catch(error){
+            return{
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+            }
+        }
+    }
+    
 }
