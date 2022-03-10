@@ -20,10 +20,10 @@ export class BookRideController {
   }
  
 @Get('/getRider')
-async find(@Query('rideId') brandId: string){
+async find(@Query('rideId') rideId: string){
      //console.log('vehicleName')
      try{
-         const response = await this.bookRideService.findRide(brandId)
+         const response = await this.bookRideService.findRide(rideId)
          return response
      }
      catch(error){
@@ -32,5 +32,19 @@ async find(@Query('rideId') brandId: string){
              Message: error
          }
      }
+    }
+
+    @Get('/bookingsList') 
+    async listBooking() {
+        console.log()
+        try {
+            const response = await this.bookRideService.bookingList()
+            return response
+        } catch (error) {
+            return {
+                StatusCode : HttpStatus.INTERNAL_SERVER_ERROR,
+                Message : error
+            }
+        }
     }
 }

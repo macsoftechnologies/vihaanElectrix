@@ -53,5 +53,33 @@ export class BookRideService {
             }
         }
     }
+    async bookingList() {
+        try {
     
+            const brands = await this.bookRideModel.find()
+            console.log(brands)
+            if (brands) {
+                return {
+                    StatusCode: HttpStatus.OK,
+                    Message: 'List of Brands',
+                    Data: {
+                        brandsList: brands 
+                    }
+    
+                }
+            }
+            return {
+                StatusCode: HttpStatus.BAD_REQUEST,
+                Message: "InValid Request"
+            }
+    
+        } catch (error) {
+            return {
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+    
+            }
+        }
+    }
+ 
 }
