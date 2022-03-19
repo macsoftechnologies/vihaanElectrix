@@ -77,7 +77,8 @@ export class vehicle extends Document{
     security: string;
     @Prop()
     ladiesFootrest: string
-
+    @Prop()
+    amount: string
 }
 
 export const  vehicleSchema = SchemaFactory.createForClass(vehicle);

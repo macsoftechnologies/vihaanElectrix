@@ -5,7 +5,8 @@ export class vehicleDto{
     vehicleId: string
     @ApiProperty()
     vehicleName: string;
-  
+   @ApiProperty()
+   amount: string
     @ApiProperty()
     model: string;
     @ApiProperty()
