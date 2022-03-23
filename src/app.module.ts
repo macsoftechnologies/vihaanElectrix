@@ -30,7 +30,8 @@ import { BookRideModule } from './book-ride/book-ride.module';
    LoanPeriodModule,
    VEnergyModule,
    BrandModule,
-   BookRideModule ],
+   BookRideModule,
+   ],
   controllers: [AppController],
   providers: [AppService],
 })

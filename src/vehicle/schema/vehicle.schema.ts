@@ -2,6 +2,14 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
 import { IsString, IsEmail, IsEnum, IsOptional, IsNumber } from 'class-validator';
 import { v4 as uuid } from 'uuid';
+export class properties{
+    
+       color: string
+       image: string
+       colorId: string
+       model: string
+    
+}
 @Schema({ timestamps: true })
 export class vehicle extends Document{
     @Prop({required : true , unique:true , default : uuid})
@@ -37,34 +45,24 @@ export class vehicle extends Document{
 
     @Prop()
     externalChargingPort: string;
-
     @Prop()
     brake: string;
-
     @Prop()
     regenerativeBraking: string;
-
     @Prop()
     display: string;
-
     @Prop()
     headLamp: string;
-
     @Prop()
     refelector: string;
-
     @Prop()
     blinkers: string;
-
     @Prop()
     brakeLights: string;
-
     @Prop()
     mudGuards: string;
-
     @Prop()
     seat: string;
-
     @Prop()
     vehicleImage: string;
     @Prop()
@@ -79,6 +77,14 @@ export class vehicle extends Document{
     ladiesFootrest: string
     @Prop()
     amount: string
+    @Prop()
+    color: string
+    @Prop()
+    image: string
+    @Prop()
+    colorId: string
 }
+
+
 
 export const  vehicleSchema = SchemaFactory.createForClass(vehicle);

@@ -75,7 +75,26 @@ export class vehicleDto{
     security: string;
     @ApiProperty()
     ladiesFootrest: string
-
+    // @ApiProperty()
+    // vehicleProperties: [properties]
+    @ApiProperty()
+    color: string
+    
+    @ApiProperty()
+    colorId: string
+   
+   
 }
+
+//export class properties{
+    
+    // color: string
+    
+    // image: string
+   
+    // colorId: string
+    
+    // model: string
+//}
 
 
