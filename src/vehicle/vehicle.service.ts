@@ -79,14 +79,12 @@ export class VehicleService {
 
    async findVehicle(vehicleId: string){
        try{
-          const vehicleResponse = await this.vehicleModel.findOne({vehicleId: vehicleId})
-           if(vehicleResponse){
+          const vehicleImgRes = await this.vehicleModel.findOne({vehicleId: vehicleId})
+           if(vehicleImgRes){
                return{
                    StatusCode: HttpStatus.OK,
-                //    Message: "Vehicle Details",
-                //    Data: {
-                       vehicleDetails: vehicleResponse
-                  // }
+                   vehicleImageRes: vehicleImgRes
+                  
                }
            }
            return{
@@ -101,7 +99,30 @@ export class VehicleService {
        }
    }
 
-   
+   async findVehicleImg(req){
+    try{
+       const vehicleImgRes = await this.colorModel.find({colorId: req.colorId})
+        if(vehicleImgRes){
+            return{
+                StatusCode: HttpStatus.OK,
+             //    Message: "Vehicle Details",
+             //    Data: {
+                    vehicleDetails: vehicleImgRes
+               // }
+            }
+        }
+        return{
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+    } catch(error){
+        return{
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+        }
+    }
+}
+
    async vehiclesList() {
     try {
 

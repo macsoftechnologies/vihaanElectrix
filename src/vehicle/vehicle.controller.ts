@@ -53,7 +53,22 @@ export class VehicleController {
             }
         }
       }
-
+    
+      @Post('/getVehicleImage')
+    
+    async findVehicleImage(@Body() req:colorDto){
+        //console.log('vehicleName')
+        try{
+            const response = await this.vehicleService.findVehicleImg(req)
+            return response
+        }
+        catch(error){
+            return{
+                StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+            }
+        }
+      }
       @Post('/addVehicle')
       async add(@Body() req:vehicleDto){
         try {
