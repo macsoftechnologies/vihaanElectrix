@@ -15,6 +15,7 @@ import { LoanPeriodModule } from './loan-period/loan-period.module';
 import { VEnergyModule } from './v-energy/v-energy.module';
 import { BrandModule } from './brand/brand.module';
 import { BookRideModule } from './book-ride/book-ride.module';
+import { SharedService } from './shared/shared.service';
 
 
 @Module({
@@ -33,6 +34,6 @@ import { BookRideModule } from './book-ride/book-ride.module';
    BookRideModule,
    ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, SharedService],
 })
 export class AppModule {}

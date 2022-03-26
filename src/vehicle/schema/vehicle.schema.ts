@@ -3,28 +3,25 @@ import { Document } from 'mongoose';
 import { IsString, IsEmail, IsEnum, IsOptional, IsNumber } from 'class-validator';
 import { v4 as uuid } from 'uuid';
 export class properties{
-    
-       color: string
-       image: string
-       colorId: string
-       model: string
-    
+     color: string
+     image: string
+     colorId: string
+     model: string
 }
 @Schema({ timestamps: true })
 export class vehicle extends Document{
     @Prop({required : true , unique:true , default : uuid})
     vehicleId: string
     @Prop()
+    imageProp: properties
+    @Prop()
     vehicleName: string;
-  
     @Prop()
     model: string;
     @Prop()
     tyre: string;
-
     @Prop()
     motor: string;
-
     @Prop()
     controller: string;
 
@@ -77,12 +74,7 @@ export class vehicle extends Document{
     ladiesFootrest: string
     @Prop()
     amount: string
-    @Prop()
-    color: string
-    @Prop()
-    image: string
-    @Prop()
-    colorId: string
+   
 }
 
 

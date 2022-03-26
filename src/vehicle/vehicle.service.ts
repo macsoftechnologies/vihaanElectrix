@@ -3,39 +3,41 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { vehicleDto } from './dto/vehicle.dto';
 import { vehicle } from './schema/vehicle.schema';
-
+import { SharedService } from 'src/shared/shared.service';
+import { color } from './schema/color.schema';
+import { colorDto } from './dto/color.dto';
 @Injectable()
 export class VehicleService {
-    constructor(@InjectModel(vehicle.name) private vehicleModel: Model<vehicle>) { }
-    async Create(req: vehicleDto, image) {
+    constructor(@InjectModel(vehicle.name) private vehicleModel: Model<vehicle>,
+                @InjectModel(color.name) private colorModel: Model<color>,
+                 private sharedService: SharedService,) { }
+    async Create(req: colorDto, image) {
        try {
-             console.log(req, "documents...", image)
-            if (image) {
-               const reqDoc = image.map((doc, index) => {
-                   let IsPrimary = false
-                   if (index == 0) {
-                       IsPrimary = true
-                   }
-                   const randomNumber = Math.floor((Math.random() * 1000000) + 1);
-                   return doc.filename
-                  })
-
-               req.vehicleImage = reqDoc.toString()
-           }
-              console.log(req);
-           // return false;
-          const createVehicleResp = await this.vehicleModel.create(req)
+             console.log(req, "req...", image)
+             if (image) {
+                if (image.vehicleImage && image.vehicleImage[0]) {
+                  const attachmentFile = await this.sharedService.saveFile(
+                    image.vehicleImage[0],
+                  );
+        
+                  req.vehicleImage = attachmentFile;
+                }
+                if (image.colorImage && image.colorImage[0]) {
+                  const attachmentFile = await this.sharedService.saveFile(
+                    image.colorImage[0],
+                  );
+        
+                  req.colorImage = attachmentFile;
+                }
+              }
+        
+          const createVehicleResp = await this.colorModel.create(req)
           
             if (createVehicleResp) {
                return {
                    statusCode: HttpStatus.OK,
-                //    message: "Registered SuccessFully",
-                //    data: {
-                       UserRegistration: {
-                           createVehicleRes: createVehicleResp
-                       }
-            //        }
-               }
+                   addVehicleRes: createVehicleResp
+                }
            }
             return {
                statusCode: HttpStatus.BAD_REQUEST,
@@ -48,6 +50,32 @@ export class VehicleService {
            };
         }
    }
+
+   async addVehicle(req: vehicleDto) {
+    try {
+           const vehicleRes = await this.vehicleModel.create(req)
+           if (vehicleRes) {
+             return {
+                 statusCode: HttpStatus.OK,
+                 message: "Added Vehicle SuccessFully",
+                 data: {
+                    VehicleSpecsResponse: vehicleRes
+                 }
+             }
+           
+         }
+          return {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: "Invalid Request"
+         }
+
+     } catch (error) {
+         return {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: error.message,
+         };
+     }
+ }
 
    async findVehicle(vehicleId: string){
        try{

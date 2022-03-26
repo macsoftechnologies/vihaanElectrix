@@ -1,34 +1,34 @@
 import { Body, Controller, Get, HttpStatus, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
-import { AnyFilesInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileFieldsInterceptor } from '@nestjs/platform-express';
 import { vehicleDto } from './dto/vehicle.dto';
 import { VehicleService } from './vehicle.service';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { colorDto } from './dto/color.dto';
 @ApiTags('vehicle')
 @Controller('vehicle')
 export class VehicleController {
   constructor(private readonly vehicleService: VehicleService) {}
 
-  @Post('/productsUpload')
+  @Post('/vehicleImageUpload')
   @ApiCreatedResponse({ description: 'vehicle details has been added successfully'})
   @ApiForbiddenResponse({ description: 'forbidden.' })  
+  @ApiBody({
+    type: colorDto,
+  })
+
   @UseInterceptors(
-        AnyFilesInterceptor({
-            storage: diskStorage({
-                destination: './files',
-                filename: (req, file, cb) => {
-                    const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
-                    cb(null, `${randomName}${extname(file.originalname)}`)
-                }
-            }),
-        }),
-    )
-    async create(@Body() req: vehicleDto, @UploadedFiles() image) {
+    FileFieldsInterceptor([
+      { name: 'vehicleImage' },
+      { name: 'colorImage' },
+         ]),
+  )
+    async create(@Body() req: colorDto, @UploadedFiles() image) {
         try {
+             
             const result = await this.vehicleService.Create(req, image)
             console.log("result", result);
-            
             return result
         } catch (error) {
             return {
@@ -52,6 +52,20 @@ export class VehicleController {
                 Message: error
             }
         }
+      }
+
+      @Post('/addVehicle')
+      async add(@Body() req:vehicleDto){
+        try {
+          const result = await this.vehicleService.addVehicle(req)
+          console.log("result", result);
+          return result
+      } catch (error) {
+          return {
+              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              message: error.message
+          };
+      }
       }
   @Get('/listOfVehicles')
   @ApiCreatedResponse({ description: 'vehicle details has been fetched successfully'})
