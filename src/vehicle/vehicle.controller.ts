@@ -38,12 +38,12 @@ export class VehicleController {
         }
      }
 
-    @Get('/getProduct')
+    @Post('/getVehicleSpecs')
     
-    async find(@Query('vehicleId') vehicleId: string){
+    async find(@Body() req:vehicleDto){
         //console.log('vehicleName')
         try{
-            const response = await this.vehicleService.findVehicle(vehicleId)
+            const response = await this.vehicleService.findVehicle(req)
             return response
         }
         catch(error){

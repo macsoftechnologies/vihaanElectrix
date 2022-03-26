@@ -77,9 +77,9 @@ export class VehicleService {
      }
  }
 
-   async findVehicle(vehicleId: string){
+   async findVehicle(req){
        try{
-          const vehicleImgRes = await this.vehicleModel.findOne({vehicleId: vehicleId})
+          const vehicleImgRes = await this.vehicleModel.findOne({vehicleId: req.vehicleId})
            if(vehicleImgRes){
                return{
                    StatusCode: HttpStatus.OK,
