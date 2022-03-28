@@ -11,6 +11,62 @@ export class color extends Document{
     colorImage: string;
     @Prop()
     model: string
+    @Prop({required : true , unique:true , default : uuid})
+    vehicleId: string
+    @Prop()
+    vehicleName: string;
+    @Prop()
+    tyre: string;
+    @Prop()
+    motor: string;
+    @Prop()
+    controller: string;
+    @Prop()
+    battery: string;
+    @Prop()
+    batteryCasing: string;
+    @Prop()
+    cells: string;
+
+    @Prop()
+    bms: string;
+
+    @Prop()
+    chargerOutput: string;
+
+    @Prop()
+    externalChargingPort: string;
+    @Prop()
+    brake: string;
+    @Prop()
+    regenerativeBraking: string;
+    @Prop()
+    display: string;
+    @Prop()
+    headLamp: string;
+    @Prop()
+    reflector: string;
+    @Prop()
+    blinkers: string;
+    @Prop()
+    brakeLights: string;
+    @Prop()
+    mudGuards: string;
+    @Prop()
+    seat: string;
+    @Prop()
+    throttle: string;
+    @Prop()
+    gradeablity: string;
+    @Prop()
+    storage: string;
+    @Prop()
+    security: string;
+    @Prop()
+    ladiesFootrest: string
+    @Prop()
+    amount: string
+   
 }
  
 export const colorSchema = SchemaFactory.createForClass(color)
