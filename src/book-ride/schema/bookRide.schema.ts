@@ -12,6 +12,10 @@ export class bookRide extends Document{
  @Prop()
  contactNo: string;
  @Prop()
+ vehicleName: string;
+ @Prop()
+ model: string;
+ @Prop()
  address: string;
  @Prop()
  area: string;
