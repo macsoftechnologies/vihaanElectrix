@@ -75,7 +75,31 @@ export class VehicleService {
              message: error.message,
          };
      }
- }
+    }
+
+//  async vehicleUpdate(req: colorDto) {
+//     try {
+//          console.log(req, "req............")
+//         const updateRes = await this.vehicleModel.updateOne({  vehicleId: req.vehicleId },
+//             {vehicleName: req.vehicleName, vehicleImage: req.vehicleImage, Price : req.Price, Discount: req.Discount, Documents_required:req.Documents_required })
+//          console.log(updateRes, "update,,res")
+//         if (updateRes.nModified == 1) {
+//             return {
+//                 StatusCode: HttpStatus.OK,
+//                 Message: "Product updated successFully by Admin"
+//             }
+//         }
+//         return {
+//             StatusCode: HttpStatus.BAD_REQUEST,
+//             Message: "Updated Failed"
+//         }
+//     } catch (error) {
+//         return {
+//             StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+//             Message: error.message
+//         }
+//     }
+//  }
 
    async findVehicle(req){
        try{
@@ -125,7 +149,7 @@ export class VehicleService {
    async vehiclesList() {
     try {
 
-        const userResponse = await this.vehicleModel.find()
+        const userResponse = await this.colorModel.find()
         console.log(userResponse)
         if (userResponse) {
             return {
