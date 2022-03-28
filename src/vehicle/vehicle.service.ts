@@ -84,8 +84,7 @@ export class VehicleService {
                return{
                    StatusCode: HttpStatus.OK,
                    vehicleImageRes: vehicleImgRes
-                  
-               }
+                  }
            }
            return{
                StatusCode: HttpStatus.BAD_REQUEST,
