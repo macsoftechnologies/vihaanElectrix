@@ -5,7 +5,7 @@ import { VehicleService } from './vehicle.service';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { ApiBody, ApiCreatedResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { colorDto } from './dto/color.dto';
+import { colorDto, DeleteVehicleDto, updateColorDto } from './dto/color.dto';
 @ApiTags('vehicle')
 @Controller('vehicle')
 export class VehicleController {
@@ -56,7 +56,7 @@ export class VehicleController {
     
       @Post('/getVehicleImage')
     
-    async findVehicleImage(@Body() req:colorDto){
+      async findVehicleImage(@Body() req:colorDto){
         //console.log('vehicleName')
         try{
             const response = await this.vehicleService.findVehicleImg(req)
@@ -98,18 +98,47 @@ export class VehicleController {
           }
       }
 
-    //   @Post('/updateProduct')
-    //   async updateProduct(@Body() req: vehicleDto) {
-    //       try {
-    //           const result = await this.vehicleService.vehicleUpdate(req)
-    //           return result
-    //       } catch (error) {
-    //           return {
-    //               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-    //               message: error.message,
-    //           };
-    //       }
-    //   }
+      @Post('/UpdateProduct')
+      @ApiCreatedResponse({ description: 'vehicle details has been added successfully'})
+      @ApiForbiddenResponse({ description: 'forbidden.' })  
+      @ApiBody({
+        type: colorDto,
+      })
+    
+      @UseInterceptors(
+        FileFieldsInterceptor([
+          { name: 'vehicleImage' },
+          { name: 'colorImage' },
+             ]),
+      )
+        async updateProduct(@Body() req: colorDto, @UploadedFiles() image) {
+            try {
+                 
+                const result = await this.vehicleService.vehicleUpdate(req, image)
+                console.log("result", result);
+                return result
+            } catch (error) {
+                return {
+                    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                    message: error.message,
+                };
+            }
+         }
+    
+         @Post('/delete')
+        async deleteUser(@Body() req: DeleteVehicleDto) { 
+        try {
+        let response = await this.vehicleService.delete(req);
+
+        return response
+        } catch (error) {
+        return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+    };
+  }
+} 
+
 
     }
   

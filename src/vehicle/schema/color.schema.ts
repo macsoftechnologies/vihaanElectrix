@@ -66,7 +66,8 @@ export class color extends Document{
     ladiesFootrest: string
     @Prop()
     amount: string
-   
+    @Prop({required: true, default:0})
+    nModified: string
 }
  
 export const colorSchema = SchemaFactory.createForClass(color)
