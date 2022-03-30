@@ -62,4 +62,29 @@ async find(@Query('brandId') brandId: string){
                }
            }
        }
-}
+
+       @Post('/brandEdit')
+       @ApiBody({
+         type: brandDto,
+       })
+     
+       @UseInterceptors(
+         FileFieldsInterceptor([
+           { name: 'logo' },
+           { name: 'brandImage' },
+              ]),
+       )
+         async edit(@Body() req: brandDto, @UploadedFiles() image) {
+             try {
+                   const result = await this.brandService.editBrand(req, image)
+                 console.log("result", result);
+                 return result
+             } catch (error) {
+                 return {
+                     statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                     message: error.message,
+                 };
+             }
+          }
+     
+    }

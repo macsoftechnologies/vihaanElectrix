@@ -49,6 +49,45 @@ export class BrandService {
          }
     }
  
+    async editBrand(req: brandDto, image) {
+        try {
+              console.log(req, "req...", image)
+              if (image) {
+                 if (image.brandImage && image.brandImage[0]) {
+                   const attachmentFile = await this.sharedService.saveFile(
+                     image.brandImage[0],
+                   );
+         
+                   req.brandImage = attachmentFile;
+                 }
+                 if (image.logo && image.logo[0]) {
+                   const attachmentFile = await this.sharedService.saveFile(
+                     image.logo[0],
+                   );
+         
+                   req.logo = attachmentFile;
+                 }
+               }
+         
+           const createBrandResp = await this.brandModel.updateOne({brandId:req.brandId},{$set: {brandImage: req.brandImage, brandName: req.brandName, logo: req.logo}})
+           
+             if (createBrandResp) {
+                return {
+                    statusCode: HttpStatus.OK,
+                    addBrandRes: createBrandResp
+                 }
+            }
+             return {
+                statusCode: HttpStatus.BAD_REQUEST,
+                message: "Invalid Request"
+            }
+        } catch (error) {
+            return {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            };
+         }
+    }
     async brandList() {
         try {
     
