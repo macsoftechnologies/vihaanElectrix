@@ -165,5 +165,33 @@ async getBrand(brandId: string){
     }
 }
 
+async delete(body: brandDto) {
+    try {
+
+          console.log(body)
+        const deleteRes = await this.brandModel.deleteOne({brandId:body.brandId});
+    console.log(deleteRes, "deleteRes...")
+
+        return {
+                statusCode: HttpStatus.OK,
+                message: 'Vehicle removed successfully',
+         };
+        
+        // return {
+        //     StatusCode: HttpStatus.BAD_REQUEST,
+        //     Message: "Company deletion Failed"
+        // }
+        
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
+
+}
+
 
 }

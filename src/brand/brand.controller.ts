@@ -87,4 +87,18 @@ async find(@Query('brandId') brandId: string){
              }
           }
      
+          @Post('/delete')
+          async deleteUser(@Body() req: brandDto) { 
+          try {
+          let response = await this.brandService.delete(req);
+  
+          return response
+          } catch (error) {
+          return {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: error.message,
+      };
+    }
+  } 
+  
     }
