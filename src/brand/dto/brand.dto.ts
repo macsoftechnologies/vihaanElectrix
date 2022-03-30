@@ -7,4 +7,6 @@ export class brandDto{
     brandName: string;
     @ApiProperty()
     logo: string;
+    @ApiProperty()
+    brandImage: string
 }

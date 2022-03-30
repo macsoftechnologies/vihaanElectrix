@@ -1,37 +1,37 @@
 import { Body, Controller, Get, HttpStatus, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
-import { AnyFilesInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileFieldsInterceptor } from '@nestjs/platform-express';
 import { BrandService } from './brand.service';
 import { brandDto } from './dto/brand.dto';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { ApiBody } from '@nestjs/swagger';
 @Controller('brand')
 export class BrandController {
   constructor(private readonly brandService: BrandService) {}
 
-  @Post('/productsUpload')
+  @Post('/brandUpload')
+  @ApiBody({
+    type: brandDto,
+  })
+
   @UseInterceptors(
-        AnyFilesInterceptor({
-            storage: diskStorage({
-                destination: './files',
-                filename: (req, file, cb) => {
-                    const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
-                    cb(null, `${randomName}${extname(file.originalname)}`)
-                }
-            }),
-        }),
-    )
-  async create(@Body() req: brandDto, @UploadedFiles() image) {
-      try {
-          const result = await this.brandService.Create(req, image)
-          console.log("result", result);
-          return result
-      } catch (error) {
-          return {
-              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-              message: error.message
-          };
-      }
-}
+    FileFieldsInterceptor([
+      { name: 'logo' },
+      { name: 'brandImage' },
+         ]),
+  )
+    async create(@Body() req: brandDto, @UploadedFiles() image) {
+        try {
+              const result = await this.brandService.Create(req, image)
+            console.log("result", result);
+            return result
+        } catch (error) {
+            return {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            };
+        }
+     }
 
 @Get('/getBrand')
 async find(@Query('brandId') brandId: string){
