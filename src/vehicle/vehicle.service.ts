@@ -123,34 +123,6 @@ export class VehicleService {
           }
      }
   
-    // async editVehicle(body: colorDto) {
-        
-    //          console.log(body, "..................................")
-    //         const updateRes = await this.colorModel.updateOne({ colorId: body.colorId},{$set:{vehicleName: body.vehicleName, vehicleImage: body.vehicleImage, 
-    //             colorImage : body.colorImage, model: body.model, tyre:body.tyre, motor: body.motor, controller: body.controller,  
-    //             battery: body.battery, batteryCasing: body.batteryCasing, cells: body.cells, bms: body.bms, 
-    //             chargerOutput: body.chargerOutput, externalChargingPort: body.externalChargingPort, brake: body.brake,
-    //              regenerativeBraking:body.regenerativeBraking, display: body.display, headLamp: body.headLamp, 
-    //              reflector: body.reflector, blinkers: body.blinkers, brakeLights: body.brakeLights, mudGuards: body.mudGuards,
-    //               seat: body.seat, throttle: body.throttle, gradeability: body.gradeablity, storage: body.storage, 
-    //               security: body.security, ladiesFootrest: body.ladiesFootrest}})          
-        
-    //         console.log(updateRes, "update,,res")
-    //         if (updateRes) {
-    //             return {
-    //                 StatusCode: HttpStatus.OK,
-    //                 Message: "User updated SuccessFully",
-    //                 userUpdate: updateRes
-    //             }
-    //         }
-           
-    //     } catch (error) {
-    //         return {
-    //             StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-    //             Message: error.message
-    //         }
-    //     }
-    //   }
 
    async findVehicle(req){
        try{
