@@ -187,5 +187,28 @@ export class VEnergyService {
          }
      }
  }
+
+async delete(body: vEnergySpecsDto) {
+    try {
+
+          console.log(body)
+        const deleteRes = await this.vEnergySpecsModel.deleteOne({chargerId:body.chargerId});
+    console.log(deleteRes, "deleteRes...")
+
+        return {
+                statusCode: HttpStatus.OK,
+                message: 'Vehicle removed successfully',
+         };
+         
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
+
+}
  
 }

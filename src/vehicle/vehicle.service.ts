@@ -4,8 +4,9 @@ import { Model } from 'mongoose';
 import { vehicleDto } from './dto/vehicle.dto';
 import { vehicle } from './schema/vehicle.schema';
 import { SharedService } from 'src/shared/shared.service';
-import { color } from './schema/color.schema';
+import { color, colorSchema } from './schema/color.schema';
 import { colorDto, DeleteVehicleDto, updateColorDto } from './dto/color.dto';
+import { count } from 'console';
 @Injectable()
 export class VehicleService {
     constructor(@InjectModel(vehicle.name) private vehicleModel: Model<vehicle>,
@@ -32,7 +33,10 @@ export class VehicleService {
               }
         
           const createVehicleResp = await this.colorModel.create(req)
-          
+        //   const n = this.colorModel.aggregate([{$count:"total"}])
+        //             console.log(n, ".......................................")
+         const n = this.colorModel.find({colorImage: req.colorImage}).count()
+         console.log(n, ".................................")
             if (createVehicleResp) {
                return {
                    statusCode: HttpStatus.OK,

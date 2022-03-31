@@ -2,6 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 
 export  class vEnergySpecsDto{
     @ApiProperty()
+    chargerId: string
+    @ApiProperty()
     networkSpecifications: []
     @ApiProperty()
     chargerStatusDetails: []

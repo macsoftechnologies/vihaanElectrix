@@ -108,4 +108,18 @@ export class VEnergyController {
              }
          }
      
+         @Post('/delete')
+         async deleteUser(@Body() req: vEnergySpecsDto) { 
+         try {
+         let response = await this.vEnergyService.delete(req);
+ 
+         return response
+         } catch (error) {
+         return {
+         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+         message: error.message,
+     };
+   }
+ } 
+ 
 }

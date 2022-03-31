@@ -27,13 +27,10 @@ export class color extends Document{
     batteryCasing: string;
     @Prop()
     cells: string;
-
     @Prop()
     bms: string;
-
     @Prop()
     chargerOutput: string;
-
     @Prop()
     externalChargingPort: string;
     @Prop()
