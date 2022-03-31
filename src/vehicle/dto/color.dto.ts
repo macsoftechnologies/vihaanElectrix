@@ -61,6 +61,8 @@ export class colorDto{
     security: string;
     @ApiProperty()
     ladiesFootrest: string
+    @ApiProperty()
+    brandName: string
 }
 
 export class updateColorDto{
@@ -124,6 +126,8 @@ export class updateColorDto{
     security: string;
     @ApiProperty()
     ladiesFootrest: string
+    @ApiProperty()
+    brandName: string
 }
 
 

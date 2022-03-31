@@ -140,5 +140,32 @@ export class VehicleController {
 } 
 
 
-    }
-  
+@Post('/count')
+async countDocs(@Body() req: colorDto) { 
+try {
+let response = await this.vehicleService.docs(req);
+
+return response
+} catch (error) {
+return {
+statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+message: error.message,
+};
+}
+
+}
+
+@Post('/brandCount')
+async brandCount(@Body() req: colorDto) { 
+try {
+let response = await this.vehicleService.vehicles(req);
+
+return response
+} catch (error) {
+return {
+statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+message: error.message,
+   };
+  }
+ }
+}

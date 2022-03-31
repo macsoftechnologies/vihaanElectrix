@@ -14,7 +14,7 @@ export class VehicleService {
                  private sharedService: SharedService,) { }
     async Create(req: colorDto, image) {
        try {
-             console.log(req, "req...", image)
+            // console.log(req, "req...", image)
              if (image) {
                 if (image.vehicleImage && image.vehicleImage[0]) {
                   const attachmentFile = await this.sharedService.saveFile(
@@ -34,9 +34,9 @@ export class VehicleService {
         
           const createVehicleResp = await this.colorModel.create(req)
         //   const n = this.colorModel.aggregate([{$count:"total"}])
-        //             console.log(n, ".......................................")
-         const n = this.colorModel.find({colorImage: req.colorImage}).count()
-         console.log(n, ".................................")
+        // //             console.log(n, ".......................................")
+        //  const n = this.colorModel.find().count()
+        //  console.log(".................................................",n, ".................................")
             if (createVehicleResp) {
                return {
                    statusCode: HttpStatus.OK,
@@ -206,12 +206,71 @@ async delete(body: DeleteVehicleDto) {
     try {
 
           console.log(body)
-        const deleteRes = await this.colorModel.deleteOne({colorId:body.colorId});
-    console.log(deleteRes, "deleteRes...")
+        const vehicleResp = await this.colorModel.deleteOne({colorId:body.colorId});
+    console.log(vehicleResp, "vehicleResp...")
 
         return {
                 statusCode: HttpStatus.OK,
                 message: 'Vehicle removed successfully',
+         };
+        
+        // return {
+        //     StatusCode: HttpStatus.BAD_REQUEST,
+        //     Message: "Company deletion Failed"
+        // }
+        
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
+
+}
+
+
+async docs(req: colorDto) {
+    try {
+
+          console.log(req)
+        const vehicleResp = await this.colorModel.find().count();
+        console.log(vehicleResp, "vehicleResp...")
+
+        return {
+                statusCode: HttpStatus.OK,
+                message: 'Total number of vehicles',
+                resp: vehicleResp
+         };
+        
+        // return {
+        //     StatusCode: HttpStatus.BAD_REQUEST,
+        //     Message: "Company deletion Failed"
+        // }
+        
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
+
+}
+
+async vehicles(req: colorDto) {
+    try {
+
+          console.log(req)
+        const vehicleResp = await this.colorModel.find({brandName: req.brandName}).count();
+        console.log(vehicleResp, "vehicleResp...")
+
+        return {
+                statusCode: HttpStatus.OK,
+                message: 'Total number of vehicles',
+                countResponse: vehicleResp
          };
         
         // return {
