@@ -33,11 +33,11 @@ export class BrandController {
         }
      }
 
-@Get('/getBrand')
-async find(@Query('brandId') brandId: string){
+@Post('/getBrand')
+async find(@Body() req:brandDto){
      //console.log('vehicleName')
      try{
-         const response = await this.brandService.getBrand(brandId)
+         const response = await this.brandService.getBrand(req)
          return response
      }
      catch(error){

@@ -141,9 +141,9 @@ async findBrand(brandId: string){
 }
 
 
-async getBrand(brandId: string){
+async getBrand(req){
     try{
-       const vehicleResponse = await this.brandModel.findOne({brandId: brandId})
+       const vehicleResponse = await this.brandModel.findOne({brandId: req.brandId})
         if(vehicleResponse){
             return{
                 StatusCode: HttpStatus.OK,
