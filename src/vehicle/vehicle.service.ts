@@ -173,6 +173,31 @@ export class VehicleService {
     }
 }
 
+async findBrandVehicle(req){
+    try{
+       const vehicleImgRes = await this.colorModel.find({brandName: req.brandName})
+       
+        if(vehicleImgRes){
+            return{
+                StatusCode: HttpStatus.OK,
+             //    Message: "Vehicle Details",
+             //    Data: {
+                    vehicleDetails: vehicleImgRes
+               // }
+            }
+        }
+        return{
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+    } catch(error){
+        return{
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+        }
+    }
+}
+
    async vehiclesList() {
     try {
 
