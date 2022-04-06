@@ -16,6 +16,7 @@ import { VEnergyModule } from './v-energy/v-energy.module';
 import { BrandModule } from './brand/brand.module';
 import { BookRideModule } from './book-ride/book-ride.module';
 import { SharedService } from './shared/shared.service';
+import { ColorMappingModule } from './color-mapping/color-mapping.module';
 
 
 @Module({
@@ -32,6 +33,7 @@ import { SharedService } from './shared/shared.service';
    VEnergyModule,
    BrandModule,
    BookRideModule,
+   ColorMappingModule
    ],
   controllers: [AppController],
   providers: [AppService, SharedService],
