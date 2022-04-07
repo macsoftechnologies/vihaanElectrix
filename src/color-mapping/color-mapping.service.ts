@@ -78,11 +78,11 @@ async addSpecs(req: colorMappingSpecsDto) {
 
  async findRide(vehicleId: string){
      try{
-        const vehicleResponse = await this.colorMappingModel.findOne({vehicleId: vehicleId})
+        const vehicleResponse = await this.colorMappingSpecsModel.findOne({vehicleId: vehicleId})
          if(vehicleResponse){
              return{
                  StatusCode: HttpStatus.OK,
-                EnergyStationsResponse: vehicleResponse
+                 colorMappingResponse: vehicleResponse
                 }
          }
          return{
@@ -96,6 +96,27 @@ async addSpecs(req: colorMappingSpecsDto) {
          }
      }
  }
+
+ async vehicleColor(vehicleId: string){
+    try{
+       const vehicleResponse = await this.colorMappingModel.findOne({vehicleId: vehicleId})
+        if(vehicleResponse){
+            return{
+                StatusCode: HttpStatus.OK,
+                colorMappingResponse: vehicleResponse
+               }
+        }
+        return{
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+    } catch(error){
+        return{
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+        }
+    }
+}
  async bookingList() {
      try {
  
@@ -126,6 +147,33 @@ async addSpecs(req: colorMappingSpecsDto) {
          }
      }
  }
+
+ async mappingList() {
+    try {
+     const brands = await this.colorMappingSpecsModel.find()
+        console.log(brands)
+        if (brands) {
+            return {
+                StatusCode: HttpStatus.OK,
+                Message: 'List of Brands',
+                Data: {
+                    mappingSpecsList: brands 
+                }
+           }
+        }
+        return {
+            StatusCode: HttpStatus.BAD_REQUEST,
+            Message: "InValid Request"
+        }
+
+    } catch (error) {
+        return {
+            StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            Message: error
+
+        }
+    }
+}
 
 }
 

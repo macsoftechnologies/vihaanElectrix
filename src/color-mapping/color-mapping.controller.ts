@@ -29,6 +29,21 @@ export class ColorMappingController {
             };
         }
      }
+
+     
+     @Get('/mappingList') 
+     async colorMappingList() {
+         console.log()
+         try {
+             const response = await this.colorMappingService.mappingList()
+             return response
+         } catch (error) {
+             return {
+                 StatusCode : HttpStatus.INTERNAL_SERVER_ERROR,
+                 Message : error
+             }
+            }
+        }
      @Post('/colorMappingSpecs')
      async add(@Body() req:colorMappingSpecsDto){
        try {
@@ -57,6 +72,7 @@ export class ColorMappingController {
          }
      }
  
+     
 
      
 @Get('/getSpec')
@@ -72,8 +88,25 @@ async find(@Query('vehicleId') vehicleId: string){
              Message: error
          }
      }
-    } 
-   }
+  }
+
+  @Get('/getVehicleColor')
+async findColors(@Query('vehicleId') vehicleId: string){
+     //console.log('vehicleName')
+     try{
+         const response = await this.colorMappingService.vehicleColor(vehicleId)
+         return response
+     }
+     catch(error){
+         return{
+             StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             Message: error
+         }
+     }
+  }
+  
+  
+}
  
 
 
