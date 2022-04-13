@@ -55,8 +55,7 @@ export class colorMappingSpecsDto{
     @ApiProperty()
     ladiesFootrest: string
     @ApiProperty()
-    vehicleProperties: [properties]
-   
+    vehicleImage: string
 
 }
 

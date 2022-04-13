@@ -1,10 +1,11 @@
 import { Body, Controller, Get, HttpStatus, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
-import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileFieldsInterceptor } from '@nestjs/platform-express';
+import { extname } from 'path';
 import { ColorMappingService } from './color-mapping.service';
 import { colorMappingDto } from './dto/colorMapping.dto';
 import { colorMappingSpecsDto } from './dto/colorMappingSpecsDto';
 import { colorMappingSpecs } from './schema/colorMappingSpecs.schema';
-
+import { diskStorage } from 'multer';
 @Controller('color-mapping')
 export class ColorMappingController {
   constructor(private readonly colorMappingService: ColorMappingService) {}
@@ -45,9 +46,20 @@ export class ColorMappingController {
             }
         }
      @Post('/colorMappingSpecs')
-     async add(@Body() req:colorMappingSpecsDto){
+     @UseInterceptors(
+        AnyFilesInterceptor({
+            storage: diskStorage({
+                destination: './files',
+                filename: (req, file, cb) => {
+                    const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
+                    cb(null, `${randomName}${extname(file.originalname)}`)
+                }
+            }),
+        }),
+    )
+     async add(@Body() req:colorMappingSpecsDto, @UploadedFiles() image){
        try {
-         const result = await this.colorMappingService.addSpecs(req)
+         const result = await this.colorMappingService.addSpecs(req, image)
          console.log("result", result);
          return result
      } catch (error) {

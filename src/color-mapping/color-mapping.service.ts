@@ -10,8 +10,7 @@ import { colorMappingSpecsDto } from './dto/colorMappingSpecsDto';
 export class ColorMappingService {
     constructor(@InjectModel(colorMapping.name) private colorMappingModel: Model<colorMapping>,
     @InjectModel(colorMappingSpecs.name) private colorMappingSpecsModel: Model<colorMappingSpecs>,
-    
-    private sharedService: SharedService,) { }
+    private sharedService: SharedService) { }
 async Create(req: colorMappingDto, image) {
 try {
 // console.log(req, "req...", image)
@@ -20,7 +19,6 @@ try {
       const attachmentFile = await this.sharedService.saveFile(
         image.vehicleImage[0],
       );
-
       req.vehicleImage = attachmentFile;
     }
     if (image.colorImage && image.colorImage[0]) {
@@ -47,39 +45,54 @@ return {
 return {
    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
    message: error.message,
-};
+   };
+  }
 }
-}
-async addSpecs(req: colorMappingSpecsDto) {
-    try {
-           const bookRideRes = await this.colorMappingSpecsModel.create(req)
-           if (bookRideRes) {
-             return {
-                 statusCode: HttpStatus.OK,
-                 message: "Specs added SuccessFully",
-                 data: {
-                    specsRes: bookRideRes
-                 }
-             }
-           
-         }
-          return {
-             statusCode: HttpStatus.BAD_REQUEST,
-             message: "Invalid Request"
-         }
 
-     } catch (error) {
-         return {
-             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-             message: error.message,
-         };
-     }
- }
+async addSpecs(req: colorMappingSpecsDto, image) {
+    try {
+        console.log(req, "documents...", image)
+        if (image) {
+            const reqDoc = image.map((doc, index) => {
+                let IsPrimary = false
+                if (index == 0) {
+                    IsPrimary = true
+                }
+                const randomNumber = Math.floor((Math.random() * 1000000) + 1);
+                return doc.filename
+            })
+
+            req.vehicleImage = reqDoc.toString()
+        }
+        console.log(req);
+        // return false;
+        const createVehicleResp = await this.colorMappingSpecsModel.create(req)
+
+        if (createVehicleResp) {
+            return {
+                statusCode: HttpStatus.OK,
+                message: "Vehicle added SuccessFully",
+                addingVehicle: createVehicleResp
+                }
+            
+            }
+        
+        return {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: "Invalid Request"
+        }
+    } catch (error) {
+        return {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: error.message,
+        };
+    }
+}
 
  async findRide(vehicleId: string){
      try{
-        const vehicleResponse = await this.colorMappingSpecsModel.findOne({vehicleId: vehicleId})
-         if(vehicleResponse){
+          const vehicleResponse = await this.colorMappingSpecsModel.findOne({vehicleId: vehicleId})
+          if(vehicleResponse){
              return{
                  StatusCode: HttpStatus.OK,
                  colorMappingResponse: vehicleResponse
@@ -119,7 +132,6 @@ async addSpecs(req: colorMappingSpecsDto) {
 }
  async bookingList() {
      try {
- 
          const brands = await this.colorMappingModel.find()
          console.log(brands)
          if (brands) {
@@ -129,25 +141,19 @@ async addSpecs(req: colorMappingSpecsDto) {
                  Data: {
                      brandsList: brands 
                  }
- 
-
-                 
              }
          }
          return {
              StatusCode: HttpStatus.BAD_REQUEST,
              Message: "InValid Request"
          }
- 
      } catch (error) {
          return {
              StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
              Message: error
- 
          }
      }
  }
-
  async mappingList() {
     try {
      const brands = await this.colorMappingSpecsModel.find()
@@ -161,7 +167,7 @@ async addSpecs(req: colorMappingSpecsDto) {
                 }
            }
         }
-        return {
+     return {
             StatusCode: HttpStatus.BAD_REQUEST,
             Message: "InValid Request"
         }
@@ -170,10 +176,9 @@ async addSpecs(req: colorMappingSpecsDto) {
         return {
             StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
             Message: error
-
         }
     }
-}
+ }
 
 }
 
