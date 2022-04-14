@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 import{ v4 as uuid } from "uuid"
 @Schema({timestamps:true})
 export class colorMapping extends Document{
-    @Prop({required: true, default: uuid})
+    @Prop()
     vehicleId: string;
     @Prop()
     vehicleImage : string;
