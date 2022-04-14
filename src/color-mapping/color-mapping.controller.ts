@@ -6,6 +6,7 @@ import { colorMappingDto } from './dto/colorMapping.dto';
 import { colorMappingSpecsDto } from './dto/colorMappingSpecsDto';
 import { colorMappingSpecs } from './schema/colorMappingSpecs.schema';
 import { diskStorage } from 'multer';
+import { ApiBody } from '@nestjs/swagger';
 @Controller('color-mapping')
 export class ColorMappingController {
   constructor(private readonly colorMappingService: ColorMappingService) {}
@@ -87,11 +88,11 @@ export class ColorMappingController {
      
 
      
-@Get('/getSpec')
-async find(@Query('vehicleId') vehicleId: string){
+@Post('/getSpec')
+async find(@Body()  req:colorMappingDto){
      //console.log('vehicleName')
      try{
-         const response = await this.colorMappingService.findRide(vehicleId)
+         const response = await this.colorMappingService.findRide(req)
          return response
      }
      catch(error){
@@ -102,11 +103,11 @@ async find(@Query('vehicleId') vehicleId: string){
      }
   }
 
-  @Get('/getVehicleColor')
-async findColors(@Query('vehicleId') vehicleId: string){
+  @Post('/getVehicleColor')
+  async findColors(@Body() req:colorMappingSpecsDto){
      //console.log('vehicleName')
      try{
-         const response = await this.colorMappingService.vehicleColor(vehicleId)
+         const response = await this.colorMappingService.vehicleColor(req)
          return response
      }
      catch(error){
@@ -117,7 +118,45 @@ async findColors(@Query('vehicleId') vehicleId: string){
      }
   }
   
-  
+   
+  @Post('/UpdateVehicle')
+  @ApiBody({
+    type: colorMappingDto,
+  })
+
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'vehicleImage' },
+      { name: 'colorImage' },
+         ]),
+  )
+    async updateProduct(@Body() req: colorMappingDto, @UploadedFiles() image) {
+        try {
+             
+            const result = await this.colorMappingService.vehicleUpdate(req, image)
+            console.log("result", result);
+            return result
+        } catch (error) {
+            return {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            };
+        }
+     }  
+
+     @Post('/delete')
+     async deleteUser(@Body() req: colorMappingSpecsDto) { 
+     try {
+     let response = await this.colorMappingService.delete(req);
+
+     return response
+     } catch (error) {
+     return {
+     statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+     message: error.message,
+ };
+}
+}
 }
  
 
