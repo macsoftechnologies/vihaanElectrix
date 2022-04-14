@@ -89,9 +89,9 @@ async addSpecs(req: colorMappingSpecsDto, image) {
     }
 }
 
- async findRide(vehicleId: string){
+ async findRide(req){
      try{
-          const vehicleResponse = await this.colorMappingSpecsModel.findOne({vehicleId: vehicleId})
+          const vehicleResponse = await this.colorMappingSpecsModel.findOne({vehicleId: req.vehicleId})
           if(vehicleResponse){
              return{
                  StatusCode: HttpStatus.OK,
@@ -110,9 +110,9 @@ async addSpecs(req: colorMappingSpecsDto, image) {
      }
  }
 
- async vehicleColor(vehicleId: string){
+ async vehicleColor(req){
     try{
-       const vehicleResponse = await this.colorMappingModel.findOne({vehicleId: vehicleId})
+       const vehicleResponse = await this.colorMappingModel.findOne({vehicleId: req.vehicleId})
         if(vehicleResponse){
             return{
                 StatusCode: HttpStatus.OK,
@@ -130,6 +130,35 @@ async addSpecs(req: colorMappingSpecsDto, image) {
         }
     }
 }
+
+async delete(body: colorMappingSpecsDto) {
+    try {
+
+          console.log(body)
+          const deleteRes = await this.colorMappingSpecsModel.deleteOne({vehicleId:body.vehicleId});
+          console.log(deleteRes, "deleteRes...")
+
+          return {
+                statusCode: HttpStatus.OK,
+                message: 'Vehicle removed successfully',
+         };
+        
+        // return {
+        //     StatusCode: HttpStatus.BAD_REQUEST,
+        //     Message: "Company deletion Failed"
+        // }
+        
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
+
+}
+
  async bookingList() {
      try {
          const brands = await this.colorMappingModel.find()
@@ -179,6 +208,47 @@ async addSpecs(req: colorMappingSpecsDto, image) {
         }
     }
  }
+
+ async vehicleUpdate(req: colorMappingDto, image) {
+    try {
+          console.log(req, "req...", image)
+          if (image) {
+             if (image.vehicleImage && image.vehicleImage[0]) {
+               const attachmentFile = await this.sharedService.saveFile(
+                 image.vehicleImage[0],
+               );
+     
+               req.vehicleImage = attachmentFile;
+             }
+             if (image.colorImage && image.colorImage[0]) {
+               const attachmentFile = await this.sharedService.saveFile(
+                 image.colorImage[0],
+               );
+     
+               req.colorImage = attachmentFile;
+             }
+          }
+        
+          const createVehicleResp = await this.colorMappingModel.updateOne({ vehicleId: req.vehicleId},{$set:{vehicleImage: req.vehicleImage, colorImage: req.colorImage}})          
+                
+          if (createVehicleResp) {
+             return {
+                 statusCode: HttpStatus.OK,
+                 addVehicleRes: createVehicleResp
+              }
+         }
+          return {
+             statusCode: HttpStatus.BAD_REQUEST,
+             message: "Invalid Request"
+         }
+     } catch (error) {
+         return {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             message: error.message,
+         };
+      }
+ }
+
 
 }
 
