@@ -89,7 +89,7 @@ export class ColorMappingController {
 
      
 @Post('/getSpec')
-async find(@Body()  req:colorMappingDto){
+async find(@Body()  req:colorMappingSpecsDto){
      //console.log('vehicleName')
      try{
          const response = await this.colorMappingService.findRide(req)
