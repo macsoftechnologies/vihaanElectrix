@@ -91,7 +91,7 @@ async addSpecs(req: colorMappingSpecsDto, image) {
 
  async findRide(req){
      try{
-          const vehicleResponse = await this.colorMappingSpecsModel.findOne({vehicleId: req.vehicleId})
+          const vehicleResponse = await this.colorMappingSpecsModel.find({vehicleId: req.vehicleId})
           if(vehicleResponse){
              return{
                  StatusCode: HttpStatus.OK,
@@ -112,7 +112,7 @@ async addSpecs(req: colorMappingSpecsDto, image) {
 
  async vehicleColor(req){
     try{
-       const vehicleResponse = await this.colorMappingModel.findOne({vehicleId: req.vehicleId})
+       const vehicleResponse = await this.colorMappingModel.find({vehicleId: req.vehicleId})
         if(vehicleResponse){
             return{
                 StatusCode: HttpStatus.OK,
