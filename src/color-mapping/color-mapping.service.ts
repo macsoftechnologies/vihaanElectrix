@@ -130,7 +130,25 @@ async addSpecs(req: colorMappingSpecsDto, image) {
         }
     }
 }
+async getBrand(req){
+    try{
+        const brandRes = await this.colorMappingSpecsModel.find({brandName: req.brandName})
+        if(brandRes){
+            return{
+                StatusCode: HttpStatus.OK,
+                brandResponse: brandRes
+            }
+        }
+      }
+        catch(error){
+            return{
+                StatusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+                Message: error
+            }
 
+        }
+    
+}
 async delete(body: colorMappingSpecsDto) {
     try {
 
@@ -142,13 +160,7 @@ async delete(body: colorMappingSpecsDto) {
                 statusCode: HttpStatus.OK,
                 message: 'Vehicle removed successfully',
          };
-        
-        // return {
-        //     StatusCode: HttpStatus.BAD_REQUEST,
-        //     Message: "Company deletion Failed"
-        // }
-        
-    } catch (error) {
+        } catch (error) {
         let error_response = {
             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
             data: null,
@@ -158,6 +170,24 @@ async delete(body: colorMappingSpecsDto) {
     }
 
 }
+
+ async deleteImage(body: colorMappingDto){
+     try{
+         const deleteRes = await this.colorMappingModel.deleteMany({vehicleId: body.vehicleId});
+         console.log(deleteRes, "resp")
+         return{
+             statusCode: HttpStatus.OK,
+             message: 'Image removed successfully'
+         }
+     }catch(error){
+         let error_response= {
+             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+             data: null,
+             message: error
+         }
+         return error_response
+     }
+ }
 
  async bookingList() {
      try {

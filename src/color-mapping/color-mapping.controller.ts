@@ -117,7 +117,19 @@ async find(@Body()  req:colorMappingSpecsDto){
          }
      }
   }
-  
+  @Post('/getBrandVehicles')
+  async findBrand(@Body() req: colorMappingSpecsDto){
+      try{
+          const response = await this.colorMappingService.getBrand(req)
+          return response
+      }
+      catch(error){
+          return{
+              StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+              Message: error
+          }
+      }
+  }
    
   @Post('/UpdateVehicle')
   @ApiBody({
@@ -157,7 +169,23 @@ async find(@Body()  req:colorMappingSpecsDto){
  };
 }
 }
-}
+
+   @Post('/deleteImages')
+   async deleteImage(@Body() req: colorMappingDto){
+       try{
+           let response = await this.colorMappingService.deleteImage(req);
+           return response
+       }
+       catch(error){
+           return{
+               statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+               message:error.message
+           }
+       }
+       }
+
+   }
+
  
 
 
