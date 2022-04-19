@@ -67,10 +67,7 @@ export class colorMappingSpecs extends Document{
     brandName: string
     @Prop()
     rim: string
-    @Prop()
-    gradebility: string
-    @Prop()
-    reflectors: string
+   
 }
  
 export const colorMappingSpecsSchema = SchemaFactory.createForClass(colorMappingSpecs)

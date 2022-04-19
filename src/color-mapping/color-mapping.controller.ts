@@ -144,7 +144,7 @@ async find(@Body()  req:colorMappingSpecsDto){
         }
      }  
 
-     @Post('/delete')
+     @Post('/deleteSpecs')
      async deleteUser(@Body() req: colorMappingSpecsDto) { 
      try {
      let response = await this.colorMappingService.delete(req);
