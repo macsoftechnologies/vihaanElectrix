@@ -279,6 +279,27 @@ async delete(body: colorMappingSpecsDto) {
       }
  }
 
+//  async specsUpdate(req: colorMappingSpecsDto, image) {
+//     try {
+//           const createVehicleResp = await this.colorMappingModel.updateOne({ vehicleId: req.vehicleId},{$set:{vehicleImage: req.vehicleImage, colorImage: req.colorImage}})          
+                
+//           if (createVehicleResp) {
+//              return {
+//                  statusCode: HttpStatus.OK,
+//                  addVehicleRes: createVehicleResp
+//               }
+//          }
+//           return {
+//              statusCode: HttpStatus.BAD_REQUEST,
+//              message: "Invalid Request"
+//          }
+//      } catch (error) {
+//          return {
+//              statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+//              message: error.message,
+//          };
+//       }
+ }
 
-}
+
 

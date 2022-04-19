@@ -108,8 +108,8 @@ export class VEnergyController {
         }
     }
 
-    @Post('/delete')
-    async deleteUser(@Body() req: vEnergySpecsDto) {
+    @Post('/deleteCharger')
+    async deleteCharger(@Body() req: vEnergySpecsDto) {
         try {
             let response = await this.vEnergyService.delete(req);
 
