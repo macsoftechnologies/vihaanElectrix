@@ -299,6 +299,57 @@ async delete(body: colorMappingSpecsDto) {
 //              message: error.message,
 //          };
 //       }
+
+async updateVehicle(req: colorMappingSpecsDto, image) {
+    try {
+        console.log(req, "documents...", image)
+        if (image) {
+            const reqDoc = image.map((doc, index) => {
+                let IsPrimary = false
+                if (index == 0) {
+                    IsPrimary = true
+                }
+                const randomNumber = Math.floor((Math.random() * 1000000) + 1);
+                return doc.filename
+            })
+
+            req.vehicleImage = reqDoc.toString()
+        }
+        console.log(req);
+        // return false;
+        const createVehicleResp = await this.colorMappingSpecsModel.updateOne({ vehicleId: req.vehicleId},{$set:{vehicleName: req.vehicleName, vehicleImage: req.vehicleImage, 
+             model: req.model, tyre:req.tyre, motor: req.motor, controller: req.controller,rim: req.rim,  
+            battery: req.battery, batteryCasing: req.batteryCasing, cells: req.cells, bms: req.bms, 
+            chargerOutput: req.chargerOutput, externalChargingPort: req.externalChargingPort, brake: req.brake,
+             regenerativeBraking:req.regenerativeBraking, display: req.display, headLamp: req.headLamp, 
+             reflector: req.reflector, blinkers: req.blinkers, brakeLights: req.brakeLights, mudGuards: req.mudGuards,
+              seat: req.seat, throttle: req.throttle, gradeability: req.gradeablity, storage: req.storage, 
+              security: req.security, ladiesFootrest: req.ladiesFootrest}})
+
+        if (createVehicleResp) {
+            return {
+                statusCode: HttpStatus.OK,
+                //    message: "Registered SuccessFully",
+                //    data: {
+                UserRegistration: {
+                    createVehicleRes: createVehicleResp
+                }
+                //        }
+            }
+        }
+        return {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: "Invalid Request"
+        }
+    } catch (error) {
+        return {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: error.message,
+        };
+    }
+}
+
+
  }
 
 
