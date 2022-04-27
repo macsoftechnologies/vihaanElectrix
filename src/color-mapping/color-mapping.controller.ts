@@ -154,19 +154,20 @@ async find(@Body()  req:colorMappingSpecsDto){
         }
      }  
 
-    //  @Post('/updateVehicle')
+     @Post('/updateVehicleSpecs')
      
-    //  async updateVehicle(@Body() req: colorMappingSpecsDto, @UploadedFiles() image){
-    //    try{
-    //        const result = await this.colorMappingService.specsUpdate(req, image)
-    //        console.log("result", result);
-    //     } catch(error){
-    //         return{
-    //             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-    //             message: error.message,
-    //         }
-    //     }
-    //  }
+     async updateVehicleSpec(@Body() req: colorMappingSpecsDto, @UploadedFiles() image){
+       try{
+           const result = await this.colorMappingService.updateVehicle(req, image)
+           console.log("result", result);
+        } catch(error){
+            return{
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            }
+        }
+     }
+
      @Post('/deleteSpecs')
      async deleteUser(@Body() req: colorMappingSpecsDto) { 
      try {

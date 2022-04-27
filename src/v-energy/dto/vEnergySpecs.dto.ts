@@ -13,4 +13,6 @@ export  class vEnergySpecsDto{
     otherSpecifications: []
     @ApiProperty()
     chargerImage: string;
+    @ApiProperty()
+    powerSpecifications: string
 }

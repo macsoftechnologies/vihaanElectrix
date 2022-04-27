@@ -79,6 +79,32 @@ export class VEnergyController {
             };
         }
     }
+
+    @Post('/updateCharger')
+    @UseInterceptors(
+        AnyFilesInterceptor({
+            storage: diskStorage({
+                destination: './files',
+                filename: (req, file, cb) => {
+                    const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('')
+                    cb(null, `${randomName}${extname(file.originalname)}`)
+                }
+            }),
+        }),
+    )
+    async updateCharger(@Body() req: vEnergySpecsDto, @UploadedFiles() image) {
+        try {
+            const result = await this.vEnergyService.updateCharger(req, image)
+            console.log("result", result);
+
+            return result
+        } catch (error) {
+            return {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                message: error.message,
+            };
+        }
+    }
     @Get('/getCharger')
 
     async findCharger(@Query('chargerId') chargerId: string) {

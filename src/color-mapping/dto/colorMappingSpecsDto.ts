@@ -47,6 +47,8 @@ export class colorMappingSpecsDto{
     @ApiProperty()
     throttle: string;
     @ApiProperty()
+    rim: string;
+    @ApiProperty()
     gradeablity: string;
     @ApiProperty()
     storage: string;
@@ -56,7 +58,8 @@ export class colorMappingSpecsDto{
     ladiesFootrest: string
     @ApiProperty()
     vehicleImage: string
-
+    @ApiProperty()
+    reflector: string
 }
 
 export class properties{
