@@ -17,7 +17,7 @@ export  class vEnergySpecs{
     @Prop()
     otherSpecifications: []
     @Prop()
-    location: loc[]
+    location: loc
 }
 
 export const  vEnergySpecsSchema = SchemaFactory.createForClass(vEnergySpecs);
