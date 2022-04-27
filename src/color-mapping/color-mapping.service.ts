@@ -329,14 +329,11 @@ async updateVehicle(req: colorMappingSpecsDto, image) {
         if (createVehicleResp) {
             return {
                 statusCode: HttpStatus.OK,
-                //    message: "Registered SuccessFully",
-                //    data: {
-                UserRegistration: {
-                    createVehicleRes: createVehicleResp
+                updateVehicleRes: createVehicleResp
                 }
-                //        }
+                
             }
-        }
+        
         return {
             statusCode: HttpStatus.BAD_REQUEST,
             message: "Invalid Request"

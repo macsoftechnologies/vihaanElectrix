@@ -160,6 +160,10 @@ async find(@Body()  req:colorMappingSpecsDto){
        try{
            const result = await this.colorMappingService.updateVehicle(req, image)
            console.log("result", result);
+           return{
+               statusCode: HttpStatus.OK,
+               updateRes: result
+           }
         } catch(error){
             return{
                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
