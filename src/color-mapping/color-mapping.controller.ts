@@ -163,6 +163,7 @@ async find(@Body()  req:colorMappingSpecsDto){
            return{
                statusCode: HttpStatus.OK,
                updateRes: result
+               
            }
         } catch(error){
             return{
