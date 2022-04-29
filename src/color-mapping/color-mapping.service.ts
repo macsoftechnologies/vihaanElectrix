@@ -324,7 +324,7 @@ async updateVehicle(req: colorMappingSpecsDto, image) {
              regenerativeBraking:req.regenerativeBraking, display: req.display, headLamp: req.headLamp, 
              reflector: req.reflector, blinkers: req.blinkers, brakeLights: req.brakeLights, mudGuards: req.mudGuards,
               seat: req.seat, throttle: req.throttle, gradeability: req.gradeablity, storage: req.storage, 
-              security: req.security, ladiesFootrest: req.ladiesFootrest}})
+              security: req.security, ladiesFootrest: req.ladiesFootrest, amount:req.amount, brandName: req.brandName}})
 
         if (createVehicleResp) {
             return {

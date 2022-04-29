@@ -60,6 +60,8 @@ export class colorMappingSpecsDto{
     vehicleImage: string
     @ApiProperty()
     reflector: string
+    @ApiProperty()
+    brandName: string
 }
 
 export class properties{
