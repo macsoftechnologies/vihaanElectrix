@@ -39,11 +39,11 @@ export class VEnergyController {
             }
         }
     }
-    @Get('/getById')
-    async find(@Query('vEnergyId') id: string) {
+    @Post('/getById')
+    async find(@Body() req:vEnergySpecsDto) {
         //console.log('vehicleName')
         try {
-            const response = await this.vEnergyService.findPeriod(id)
+            const response = await this.vEnergyService.getChargerDetails(req)
             return response
         }
         catch (error) {

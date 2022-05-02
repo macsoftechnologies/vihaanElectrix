@@ -157,9 +157,9 @@ export class VEnergyService {
             }
         }
     }
-    async findPeriod(vEnergyId: string) {
+    async getChargerDetails(req: vEnergySpecsDto) {
         try {
-            const vehicleResponse = await this.vEnergyModel.findOne({ vEnergyId: vEnergyId })
+            const vehicleResponse = await this.vEnergySpecsModel.find({ chargerId: req.chargerId })
             if (vehicleResponse) {
                 return {
                     StatusCode: HttpStatus.OK,
