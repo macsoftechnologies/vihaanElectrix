@@ -7,4 +7,6 @@ export class colorMappingDto{
     vehicleImage : string;
     @ApiProperty()
     colorImage: string;
+    @ApiProperty()
+    colorId: string
 }

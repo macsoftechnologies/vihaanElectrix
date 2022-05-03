@@ -9,6 +9,8 @@ export class colorMapping extends Document{
     vehicleImage : []
     @Prop()
     colorImage: []
+    @Prop({required: true, default:uuid, unique:true})
+    colorId: string
 }
 
 export const colorMappingSchema = SchemaFactory.createForClass(colorMapping)

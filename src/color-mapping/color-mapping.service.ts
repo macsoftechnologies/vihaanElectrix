@@ -173,7 +173,7 @@ async delete(body: colorMappingSpecsDto) {
 
  async deleteImage(body: colorMappingDto){
      try{
-         const deleteRes = await this.colorMappingModel.deleteMany({vehicleId: body.vehicleId});
+         const deleteRes = await this.colorMappingModel.deleteMany({colorId: body.colorId});
          console.log(deleteRes, "resp")
          return{
              statusCode: HttpStatus.OK,
