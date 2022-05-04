@@ -138,7 +138,6 @@ export class VEnergyController {
     async deleteCharger(@Body() req: vEnergySpecsDto) {
         try {
             let response = await this.vEnergyService.delete(req);
-
             return response
         } catch (error) {
             return {
