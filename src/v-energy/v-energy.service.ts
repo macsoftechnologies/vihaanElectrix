@@ -103,7 +103,7 @@ export class VEnergyService {
             }
             console.log(req);
             // return false;
-            const createVehicleResp = await this.vEnergySpecsModel.updateOne({ vehicleId: req.chargerId},{$set:{chargerImage: req.chargerImage, powerSpecifications: req.powerSpecifications}})          
+            const createVehicleResp = await this.vEnergySpecsModel.updateOne({ chargerId: req.chargerId},{$set:{chargerImage: req.chargerImage, powerSpecifications: req.powerSpecifications}})          
                 
 
             if (createVehicleResp) {
