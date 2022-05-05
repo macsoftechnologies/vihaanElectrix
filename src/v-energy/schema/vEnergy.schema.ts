@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 import { v4 as uuid } from 'uuid';
-export class loc{
+export class loc[
     @Prop()
     longitude: string;
     @Prop()
     latitude: string
-}
+]
 @Schema({timestamps:true})
 export class vEnergy extends Document{
     @Prop()
