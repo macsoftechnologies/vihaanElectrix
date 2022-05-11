@@ -145,7 +145,6 @@ async getBrand(req){
                 StatusCode:HttpStatus.INTERNAL_SERVER_ERROR,
                 Message: error
             }
-
         }
     
 }
