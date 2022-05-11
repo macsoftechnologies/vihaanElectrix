@@ -84,10 +84,7 @@ export class ColorMappingController {
              }
          }
      }
- 
-     
-
-     
+    
 @Post('/getSpec')
 async find(@Body()  req:colorMappingSpecsDto){
      //console.log('vehicleName')
