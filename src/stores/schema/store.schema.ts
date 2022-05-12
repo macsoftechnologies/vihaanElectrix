@@ -15,11 +15,11 @@ export class store extends Document{
     @Prop()
     storeName: string
     @Prop()
-    storeIcon: string
+    storeIcon: []
     @Prop()
     location: loc
     @Prop()
-    storeImage: string
+    storeImage: []
 
 }
 

@@ -8,11 +8,11 @@ export class storeDto{
     @ApiProperty()
     storeName: string
     @ApiProperty()
-    storeIcon: string
+    storeIcon: []
     @ApiProperty()
     location: loc
     @ApiProperty()
-    storeImage: string  
+    storeImage: []
     @ApiProperty()
     storeId: string
 }
