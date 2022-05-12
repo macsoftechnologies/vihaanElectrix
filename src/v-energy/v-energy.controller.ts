@@ -147,4 +147,21 @@ export class VEnergyController {
         }
     }
 
+    
+@Get('/count')
+async countDocs() { 
+try {
+let response = await this.vEnergyService.docs();
+
+return response
+} catch (error) {
+return {
+statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+message: error.message,
+};
+}
+
+}
+
+
 }

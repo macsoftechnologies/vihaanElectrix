@@ -92,5 +92,17 @@ export class StoresController {
              }
          }
          }
-  
+         @Get('/count')
+         async countDocs() { 
+         try {
+         let response = await this.storesService.docs();
+         
+         return response
+         } catch (error) {
+         return {
+         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+         message: error.message,
+         };
+         }
+        }
 }

@@ -345,6 +345,32 @@ async updateVehicle(req: colorMappingSpecsDto, image) {
     }
 }
 
+async docs() {
+    try {
+        const vehicleResp = await this.colorMappingSpecsModel.find().count();
+        console.log(vehicleResp, "vehicleResp...")
+
+        return {
+                statusCode: HttpStatus.OK,
+                message: 'Total number of vehicles',
+                resp: vehicleResp
+         };
+        
+        // return {
+        //     StatusCode: HttpStatus.BAD_REQUEST,
+        //     Message: "Company deletion Failed"
+        // }
+        
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
+
+}
 
  }
 

@@ -100,5 +100,18 @@ async find(@Body() req:brandDto){
       };
     }
   } 
-  
+
+  @Get('/count')
+         async countDocs() { 
+         try {
+         let response = await this.brandService.docs();
+         
+         return response
+         } catch (error) {
+         return {
+         statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+         message: error.message,
+         };
+         }
+        }
     }
