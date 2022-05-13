@@ -35,11 +35,11 @@ export class BookRideService {
   
     async findRide(rideId: string){
         try{
-           const vehicleResponse = await this.bookRideModel.findOne({rideId: rideId})
-            if(vehicleResponse){
+           const bookingResponse = await this.bookRideModel.findOne({rideId: rideId})
+            if(bookingResponse){
                 return{
                     StatusCode: HttpStatus.OK,
-                   EnergyStationsResponse: vehicleResponse
+                   EnergyStationsResponse: bookingResponse
                    }
             }
             return{
@@ -84,4 +84,32 @@ export class BookRideService {
         }
     }
  
+async docs() {
+    try {
+        const bookingResp = await this.bookRideModel.find().count();
+        console.log(bookingResp, "bookingResp...")
+
+        return {
+                statusCode: HttpStatus.OK,
+                message: 'Total number of Stores',
+                resp: bookingResp
+         };
+        
+        // return {
+        //     StatusCode: HttpStatus.BAD_REQUEST,
+        //     Message: "Company deletion Failed"
+        // }
+        
+    } catch (error) {
+        let error_response = {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            data: null,
+            message: error,
+        };
+        return error_response;
+    }
 }
+
+}
+
+

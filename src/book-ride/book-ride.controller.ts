@@ -47,4 +47,18 @@ async find(@Query('rideId') rideId: string){
             }
         }
     }
+
+    @Get('/count')
+    async countDocs() { 
+    try {
+    let response = await this.bookRideService.docs();
+    
+    return response
+    } catch (error) {
+    return {
+    statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+    message: error.message,
+    };
+    }
+   }
 }
