@@ -29,11 +29,7 @@ export class UploadTypeService {
           
             if (documentsResp) {
                return {
-                   statusCode: HttpStatus.OK,
-                //    message: "documents added SuccessFully",
-                //    data: {
-                //            documentsRes: documentsResp
-                //           }
+                   statusCode: HttpStatus.OK
                }
            }
             return {
