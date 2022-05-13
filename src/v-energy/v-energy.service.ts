@@ -256,7 +256,7 @@ export class VEnergyService {
 
     async docs() {
         try {
-            const vehicleResp = await this.vEnergyModel.find().count();
+            const vehicleResp = await this.vEnergySpecsModel.find().count();
             console.log(vehicleResp, "vehicleResp...")
     
             return {
