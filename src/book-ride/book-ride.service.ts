@@ -7,24 +7,37 @@ import { bookRide } from './schema/bookRide.schema';
 @Injectable()
 export class BookRideService {
     constructor(@InjectModel(bookRide.name) private bookRideModel: Model<bookRide>) { }
-    async Create(req: bookRideDto) {
-       try {
-              const bookRideRes = await this.bookRideModel.create(req)
-              if (bookRideRes) {
+    async addRide(req: bookRideDto, image) {
+        try {
+            console.log(req, "documents...", image)
+            if (image) {
+                const reqDoc = image.map((doc, index) => {
+                    let IsPrimary = false
+                    if (index == 0) {
+                        IsPrimary = true
+                    }
+                    const randomNumber = Math.floor((Math.random() * 1000000) + 1);
+                    return doc.filename
+                })
+
+                req.vehicleImage = reqDoc.toString()
+            }
+            console.log(req);
+            // return false;
+            const bookRideResp = await this.bookRideModel.create(req)
+
+            if (bookRideResp) {
                 return {
                     statusCode: HttpStatus.OK,
-                    message: "Registered Ride SuccessFully",
-                    data: {
-                       bookingRes: bookRideRes
-                    }
+                   bookRideRes: bookRideResp
+                    
+                    //        }
                 }
-              
             }
-             return {
+            return {
                 statusCode: HttpStatus.BAD_REQUEST,
                 message: "Invalid Request"
             }
-
         } catch (error) {
             return {
                 statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
@@ -32,7 +45,7 @@ export class BookRideService {
             };
         }
     }
-  
+
     async findRide(rideId: string){
         try{
            const bookingResponse = await this.bookRideModel.findOne({rideId: rideId})

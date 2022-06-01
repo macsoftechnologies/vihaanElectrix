@@ -20,7 +20,7 @@ export class bookRide extends Document {
     @Prop()
     area: string;
     @Prop()
-    landMark: string;
+    landmark: string;
     @Prop()
     city: string;
     @Prop()

@@ -17,4 +17,6 @@ export class bookRideDto{
     landMark: string;
     @ApiProperty()
     city: string;
+    @ApiProperty()
+    vehicleImage: string;
    }
