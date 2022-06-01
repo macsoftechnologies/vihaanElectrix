@@ -21,7 +21,7 @@ import { StoresModule } from './stores/stores.module';
 
 
 @Module({
-  imports: [ MongooseModule.forRootAsync({useClass : MongooseConfigService}),
+  imports: [ MongooseModule.forRoot('mongodb://velectrix1:Vihaan2023@13.232.5.108:27017/velectrix?authSource=admin'),
    VehicleModule,
    VehicleInformationModule,
    AdminModule,

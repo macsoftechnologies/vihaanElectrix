@@ -23,6 +23,7 @@ export class bookRide extends Document {
     landMark: string;
     @Prop()
     city: string;
-
+    @Prop()
+    vehicleImage: string;
 }
 export const bookRideSchema = SchemaFactory.createForClass(bookRide)
