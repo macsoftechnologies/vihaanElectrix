@@ -1,16 +1,18 @@
 import { ApiProperty } from "@nestjs/swagger"
-export class loc{
+// export class loc{
     
-    longitude: string
-    latitude: string
-}
+//     longitude: string
+//     latitude: string
+// }
 export class storeDto{
     @ApiProperty()
     storeName: string
     @ApiProperty()
     storeIcon: []
     @ApiProperty()
-    location: loc
+    longitude: string
+    @ApiProperty()
+    latitude: string
     @ApiProperty()
     storeImage: []
     @ApiProperty()

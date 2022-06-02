@@ -114,7 +114,7 @@ async storeUpdate(req: storeDto, image) {
              }
           }
         
-          const updatestoreResp = await this.storeModel.updateOne({ storeId: req.storeId},{$set:{storeImage: req.storeImage, storeIcon: req.storeIcon, storeName: req.storeName, location: req.location}})          
+          const updatestoreResp = await this.storeModel.updateOne({ storeId: req.storeId},{$set:{storeImage: req.storeImage, storeIcon: req.storeIcon, storeName: req.storeName, longitude: req.longitude, latitude: req.latitude}})          
                 
           if (updatestoreResp) {
              return {
