@@ -14,8 +14,6 @@ export class bookRide extends Document {
     @Prop()
     vehicleName: string;
     @Prop()
-    model: string;
-    @Prop()
     address: string;
     @Prop()
     area: string;
@@ -25,5 +23,7 @@ export class bookRide extends Document {
     city: string;
     @Prop()
     vehicleImage: string;
+    @Prop()
+    brand: string
 }
 export const bookRideSchema = SchemaFactory.createForClass(bookRide)
