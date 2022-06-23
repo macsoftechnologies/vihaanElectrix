@@ -15,6 +15,10 @@ export  class vEnergyDto{
     aadhar: string;
     @ApiProperty()
     deviceOwnerName: string;
+    // @ApiProperty()
+    // longitude: string;
+    // @ApiProperty()
+    // latitude: string
   
     
 }

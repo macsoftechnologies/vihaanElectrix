@@ -26,14 +26,13 @@ try {
     }
   }
 
-const storeResp
- = await this.storeModel.create(req)
-if (storeResp
-    ) {
+const storeResp= await this.storeModel.create(req)
+const Count = await this.storeModel.find().count();
+if (storeResp ) {
    return {
        statusCode: HttpStatus.OK,
-       addstoreRes: storeResp
-
+       addstoreRes: storeResp,
+       count:Count
     }
 }
 return {
@@ -50,13 +49,16 @@ return {
 async storeList() {
     try {
      const stores = await this.storeModel.find()
+     const Count = await this.storeModel.find().count();
         console.log(stores)
         if (stores) {
             return {
                 StatusCode: HttpStatus.OK,
                 Message: 'List of stores',
+                Count: Count,
                 Data: {
-                    storesList: stores 
+                    storesList: stores,
+                    count: Count
                 }
            }
         }

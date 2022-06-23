@@ -11,8 +11,12 @@ export class loc{
 export class vEnergy extends Document{
     @Prop()
     type: string;
+    // @Prop()
+    // location: loc[]
     @Prop()
-    location: loc[]
+    longitude: string;
+    @Prop()
+    latitude: string
     @Prop({required:true, unique:true, default: uuid })
     vEnergyId: string;
     @Prop()

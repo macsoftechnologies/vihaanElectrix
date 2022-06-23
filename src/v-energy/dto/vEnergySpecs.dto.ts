@@ -1,11 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-// export class loc{
-//     @ApiProperty()
-//     longitude: string;
-//     @ApiProperty()
-//     latitude: string
-// }
+export class loc{
+    longitude: string;
+    latitude: string
+}
 export  class vEnergySpecsDto{
     @ApiProperty()
     chargerId: string
@@ -25,4 +23,6 @@ export  class vEnergySpecsDto{
     longitude: string;
     @ApiProperty()
     latitude: string
+    @ApiProperty()
+    location: loc
 }
