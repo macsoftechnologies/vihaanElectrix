@@ -8,109 +8,132 @@ import { admin } from './schema/admin.schema';
 
 @Injectable()
 export class AdminService {
-    constructor(@InjectModel(admin.name) private adminModel: Model<admin>) { }
+  constructor(@InjectModel(admin.name) private adminModel: Model<admin>) {}
 
-    async Create(req: adminLogin) {
+  async Create(req: adminLogin) {
+    try {
+      // const loginRes = await this.adminModel.findOne({ $or: [{ email: req.email }, { Mobile: req.mobileNum }] })
 
-        try {
-            // const loginRes = await this.adminModel.findOne({ $or: [{ email: req.email }, { Mobile: req.mobileNum }] })
+      // if (loginRes) {
+      //     return {
+      //         statusCode: HttpStatus.CONFLICT,
+      //         message: `User Already Exits with ${loginRes.email} and ${loginRes.mobileNum}`
+      //     }
+      // }
 
-            // if (loginRes) {
-            //     return {
-            //         statusCode: HttpStatus.CONFLICT,
-            //         message: `User Already Exits with ${loginRes.email} and ${loginRes.mobileNum}`
-            //     }
-            // }
-
-            const registerRes = await this.adminModel.create(req)
-            if (registerRes) {
-                return {
-                    statusCode: HttpStatus.OK,
-                    message: "Registered SuccessFully",
-                    data: {
-                        authentication: {
-                            Email: registerRes.email,
-                            MobileNum: registerRes.mobileNum
-                        }
-                    }
-                }
-              
-            }
-             return {
-                statusCode: HttpStatus.BAD_REQUEST,
-                message: "Invalid Request"
-            }
-
-        } catch (error) {
-            return {
-                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-                message: error.message,
-            };
-        }
+      const registerRes = await this.adminModel.create(req);
+      if (registerRes) {
+        return {
+          statusCode: HttpStatus.OK,
+          message: 'Registered SuccessFully',
+          data: {
+            authentication: {
+              Email: registerRes.email,
+              MobileNum: registerRes.mobileNum,
+              adminId: registerRes.adminId,
+            },
+          },
+        };
+      }
+      return {
+        statusCode: HttpStatus.BAD_REQUEST,
+        message: 'Invalid Request',
+      };
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+      };
     }
+  }
 
-    async Login(req: adminLogin) {
-        try {
-
-            const loginRes = await this.adminModel.findOne({ $or: [{ Email: req.email }, { MobileNum: req.mobileNum }] }).lean()
-            if (loginRes) {
-                if (loginRes.password === req.password) {
-
-                    return {
-                        statusCode: HttpStatus.OK,
-                        message: "Login SuccessFully",
-                        authentication: {
-                            Email: loginRes.email
-                        }
-                    }
-                }
-
-                return {
-                    statusCode: HttpStatus.UNAUTHORIZED,
-                    message: "Invalid Password"
-                }
-
-            }
-            return {
-                statusCode: HttpStatus.NOT_FOUND,
-                message: "User Not Found"
-
-            }
-        } catch (error) {
-            return {
-                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-                message: error.message,
-            };
+  async Login(req: adminLogin) {
+    try {
+      const loginRes = await this.adminModel
+        .findOne({ $or: [{ Email: req.email }, { MobileNum: req.mobileNum }] })
+        .lean();
+      if (loginRes) {
+        if (loginRes.password === req.password) {
+          return {
+            statusCode: HttpStatus.OK,
+            message: 'Login SuccessFully',
+            authentication: {
+              Email: loginRes.email,
+            },
+          };
         }
-    }
 
-//     async vehiclesList() {
-//         try {
-    
-//             const userResponse = await this.vehicleModel.find()
-//             console.log(userResponse)
-//             if (userResponse) {
-//                 return {
-//                     StatusCode: HttpStatus.OK,
-//                     Message: 'List of Vehicles',
-//                     Data: {
-//                         UserDetails: userResponse
-//                     }
-    
-//                 }
-//             }
-//             return {
-//                 StatusCode: HttpStatus.BAD_REQUEST,
-//                 Message: "InValid Request"
-//             }
-    
-//         } catch (error) {
-//             return {
-//                 StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-//                 Message: error
-    
-//             }
-//         }
-// }
+        return {
+          statusCode: HttpStatus.UNAUTHORIZED,
+          message: 'Invalid Password',
+        };
+      }
+      return {
+        statusCode: HttpStatus.NOT_FOUND,
+        message: 'User Not Found',
+      };
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error.message,
+      };
+    }
+  }
+
+  //     async vehiclesList() {
+  //         try {
+
+  //             const userResponse = await this.vehicleModel.find()
+  //             console.log(userResponse)
+  //             if (userResponse) {
+  //                 return {
+  //                     StatusCode: HttpStatus.OK,
+  //                     Message: 'List of Vehicles',
+  //                     Data: {
+  //                         UserDetails: userResponse
+  //                     }
+
+  //                 }
+  //             }
+  //             return {
+  //                 StatusCode: HttpStatus.BAD_REQUEST,
+  //                 Message: "InValid Request"
+  //             }
+
+  //         } catch (error) {
+  //             return {
+  //                 StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+  //                 Message: error
+
+  //             }
+  //         }
+  // }
+  async updateAdmin(req: adminLogin) {
+    try {
+      const editPassword = await this.adminModel.updateOne(
+        { adminId: req.adminId },
+        {
+          $set: {
+            email: req.email,
+            password: req.password,
+            mobileNum: req.mobileNum,
+          },
+        },
+      );
+      if (editPassword) {
+        return {
+          statusCode: HttpStatus.OK,
+          Message: 'updated sucessfully',
+          Data: {
+            res: editPassword,
+          },
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        Message: error,
+      };
+    }
+  }
 }
-
