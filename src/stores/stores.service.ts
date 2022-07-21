@@ -129,13 +129,17 @@ export class StoresService {
             storeName: req.storeName,
             longitude: req.longitude,
             latitude: req.latitude,
+            storeClose: req.storeClose,
+            storeOpen: req.storeOpen,
           },
         },
       );
+      const count = await this.storeModel.count();
 
       if (updatestoreResp) {
         return {
           statusCode: HttpStatus.OK,
+          count: count,
           updatestoreRes: updatestoreResp,
         };
       }

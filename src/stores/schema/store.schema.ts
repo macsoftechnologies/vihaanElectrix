@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { isUUID } from 'class-validator';
+
 import { Document } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 // export class loc{
