@@ -5,71 +5,71 @@ import { v4 as uuid } from 'uuid';
 export class colorMappingSpecs extends Document {
   @Prop({ required: true, unique: true, default: uuid })
   colorId: string;
-  @Prop()
+  @Prop({ default: '' })
   vehicleImage: [];
-  @Prop()
+  @Prop({ default: '' })
   colorImage: string;
-  @Prop()
+  @Prop({ default: '' })
   model: string;
   @Prop({ required: true, unique: true, default: uuid })
   vehicleId: string;
-  @Prop()
+  @Prop({ default: '' })
   vehicleName: string;
-  @Prop()
+  @Prop({ default: '' })
   tyre: string;
-  @Prop()
+  @Prop({ default: '' })
   motor: string;
-  @Prop()
+  @Prop({ default: '' })
   controller: string;
-  @Prop()
+  @Prop({ default: '' })
   battery: string;
-  @Prop()
+  @Prop({ default: '' })
   batteryCasing: string;
-  @Prop()
+  @Prop({ default: '' })
   cells: string;
-  @Prop()
+  @Prop({ default: '' })
   bms: string;
-  @Prop()
+  @Prop({ default: '' })
   chargerOutput: string;
-  @Prop()
+  @Prop({ default: '' })
   externalChargingPort: string;
-  @Prop()
+  @Prop({ default: '' })
   brake: string;
-  @Prop()
+  @Prop({ default: '' })
   regenerativeBraking: string;
-  @Prop()
+  @Prop({ default: '' })
   display: string;
-  @Prop()
+  @Prop({ default: '' })
   headLamp: string;
-  @Prop()
+  @Prop({ default: '' })
   reflector: string;
-  @Prop()
+  @Prop({ default: '' })
   blinkers: string;
-  @Prop()
+  @Prop({ default: '' })
   brakeLights: string;
-  @Prop()
+  @Prop({ default: '' })
   mudGuards: string;
-  @Prop()
+  @Prop({ default: '' })
   seat: string;
-  @Prop()
+  @Prop({ default: '' })
   throttle: string;
-  @Prop()
+  @Prop({ default: '' })
   gradeablity: string;
-  @Prop()
+  @Prop({ default: '' })
   storage: string;
-  @Prop()
+  @Prop({ default: '' })
   security: string;
-  @Prop()
+  @Prop({ default: '' })
   ladiesFootrest: string;
-  @Prop()
+  @Prop({ default: '' })
   amount: string;
-  @Prop()
+  @Prop({ default: '' })
   brandName: string;
-  @Prop()
+  @Prop({ default: '' })
   rim: string;
-  @Prop()
+  @Prop({ default: '' })
   specsImage: string;
-  @Prop()
+  @Prop({ default: '' })
   price: string;
 }
 
