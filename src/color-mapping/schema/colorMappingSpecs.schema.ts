@@ -71,6 +71,22 @@ export class colorMappingSpecs extends Document {
   specsImage: string;
   @Prop({ default: '' })
   price: string;
+  @Prop()
+  speed: string;
+  @Prop()
+  range: string;
+  @Prop()
+  chargingTime: string;
+  @Prop()
+  loadCapacity: string;
+  @Prop()
+  batteryType: string;
+  @Prop()
+  motorType: string;
+  @Prop()
+  batteryCapacity: string;
+  @Prop()
+  motorCapacity: string;
 }
 
 export const colorMappingSpecsSchema =
