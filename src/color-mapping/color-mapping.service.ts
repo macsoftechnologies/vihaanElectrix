@@ -402,6 +402,22 @@ export class ColorMappingService {
             ladiesFootrest: req.ladiesFootrest,
             amount: req.amount,
             brandName: req.brandName,
+
+            speed: req.speed,
+
+            range: req.range,
+
+            chargingTime: req.chargingTime,
+
+            loadCapacity: req.loadCapacity,
+
+            batteryType: req.batteryType,
+
+            motorType: req.motorType,
+
+            batteryCapacity: req.batteryCapacity,
+
+            motorCapacity: req.motorCapacity,
           },
         },
       );

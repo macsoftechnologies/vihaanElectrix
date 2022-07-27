@@ -64,6 +64,22 @@ export class colorMappingSpecsDto {
   brandName: string;
   @ApiProperty()
   specsImage: string;
+  @ApiProperty()
+  speed: string;
+  @ApiProperty()
+  range: string;
+  @ApiProperty()
+  chargingTime: string;
+  @ApiProperty()
+  loadCapacity: string;
+  @ApiProperty()
+  batteryType: string;
+  @ApiProperty()
+  motorType: string;
+  @ApiProperty()
+  batteryCapacity: string;
+  @ApiProperty()
+  motorCapacity: string;
 }
 
 export class properties {
