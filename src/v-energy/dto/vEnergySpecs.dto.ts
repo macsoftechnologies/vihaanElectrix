@@ -1,28 +1,32 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
-export class loc{
-    longitude: string;
-    latitude: string
+export class loc {
+  longitude: string;
+  latitude: string;
 }
-export  class vEnergySpecsDto{
-    @ApiProperty()
-    chargerId: string
-    @ApiProperty()
-    networkSpecifications: []
-    @ApiProperty()
-    chargerStatusDetails: []
-    @ApiProperty()
-    environmentStatus: []
-    @ApiProperty()
-    otherSpecifications: []
-    @ApiProperty()
-    chargerImage: string;
-    @ApiProperty()
-    powerSpecifications: string
-    @ApiProperty()
-    longitude: string;
-    @ApiProperty()
-    latitude: string
-    @ApiProperty()
-    location: loc
+export class vEnergySpecsDto {
+  @ApiProperty()
+  chargerId: string;
+  @ApiProperty()
+  networkSpecifications: [];
+  @ApiProperty()
+  chargerStatusDetails: [];
+  @ApiProperty()
+  environmentStatus: [];
+  @ApiProperty()
+  otherSpecifications: [];
+  @ApiProperty()
+  chargerImage: string;
+  @ApiProperty()
+  powerSpecifications: string;
+  @ApiProperty()
+  longitude: string;
+  @ApiProperty()
+  latitude: string;
+  @ApiProperty()
+  location: loc;
+  @ApiProperty()
+  venergyOpen: string;
+  @ApiProperty()
+  venergyClose: string;
 }

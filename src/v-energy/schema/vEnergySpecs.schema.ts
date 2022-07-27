@@ -18,6 +18,10 @@ export class vEnergySpecs {
   longitude: string;
   @Prop()
   latitude: string;
+  @Prop()
+  venergyOpen: string;
+  @Prop()
+  venergyClose: string;
 }
 
 export const vEnergySpecsSchema = SchemaFactory.createForClass(vEnergySpecs);
