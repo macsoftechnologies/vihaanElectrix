@@ -309,7 +309,11 @@ export class ColorMappingService {
       const createVehicleResp = await this.colorMappingModel.updateOne(
         { vehicleId: req.vehicleId },
         {
-          $set: { vehicleImage: req.vehicleImage, colorImage: req.colorImage },
+          $set: {
+            vehicleImage: req.vehicleImage,
+            colorImage: req.colorImage,
+            color: req.color,
+          },
         },
       );
 
