@@ -264,11 +264,13 @@ export class ColorMappingService {
   async mappingList() {
     try {
       const brands = await this.colorMappingSpecsModel.find();
+      const count = await this.colorMappingSpecsModel.count();
       console.log(brands);
       if (brands) {
         return {
           StatusCode: HttpStatus.OK,
           Message: 'List of Brands',
+          count: count,
           Data: {
             mappingSpecsList: brands,
           },
