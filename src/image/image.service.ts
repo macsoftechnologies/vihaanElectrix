@@ -46,11 +46,13 @@ export class ImageService {
   async imageList() {
     try {
       const imagesResp = await this.imageModel.find();
+      const count = await this.imageModel.count();
       console.log(imagesResp);
       if (imagesResp) {
         return {
           StatusCode: HttpStatus.OK,
           imageRes: imagesResp,
+          count: count,
         };
       }
       return {
