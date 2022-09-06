@@ -1,4 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+export class spec {
+  @ApiProperty()
+  key: string;
+  @ApiProperty()
+  value: string;
+}
 export class colorMappingSpecsDto {
   @ApiProperty()
   vehicleId: string;
@@ -80,6 +86,16 @@ export class colorMappingSpecsDto {
   batteryCapacity: string;
   @ApiProperty()
   motorCapacity: string;
+  @ApiProperty()
+  specs: spec[];
+  @ApiProperty()
+  wheelSize: string;
+  @ApiProperty()
+  batteryWarranty: string;
+  @ApiProperty()
+  motorWarranty: string;
+  @ApiProperty()
+  licenseRegistration: string;
 }
 
 export class properties {

@@ -1,6 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { v4 as uuid } from 'uuid';
+export class spec {
+  key: string;
+  value: string;
+}
 @Schema({ timestamps: true })
 export class colorMappingSpecs extends Document {
   @Prop({ required: true, unique: true, default: uuid })
@@ -87,6 +91,14 @@ export class colorMappingSpecs extends Document {
   batteryCapacity: string;
   @Prop()
   motorCapacity: string;
+  @Prop()
+  wheelSize: string;
+  @Prop()
+  batteryWarranty: string;
+  @Prop()
+  motorWarranty: string;
+  @Prop()
+  licenseRegistration: string;
 }
 
 export const colorMappingSpecsSchema =

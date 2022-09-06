@@ -20,26 +20,31 @@ import { ColorMappingModule } from './color-mapping/color-mapping.module';
 import { StoresModule } from './stores/stores.module';
 import { ImageModule } from './image/image.module';
 
-
 @Module({
- // imports: [ MongooseModule.forRoot('mongodb://velectrix1:Vihaan2023@13.232.5.108:27017/velectrix?authSource=admin'),
- imports: [MongooseModule.forRoot('mongodb+srv://macsof:macsof@nextlevelcarwash.yjs3i.mongodb.net/vElectrix?retryWrites=true&w=majority'), 
- VehicleModule,
-   VehicleInformationModule,
-   AdminModule,
-   UserModule,
-   LoanTypeModule,
-   UploadTypeModule,
-   LoanModule,
-   LoanDetailsModule,
-   LoanPeriodModule,
-   VEnergyModule,
-   BrandModule,
-   BookRideModule,
-   ColorMappingModule,
-   StoresModule,
-   ImageModule
-   ],
+  imports: [
+    MongooseModule.forRoot(
+      'mongodb+srv://macsof:macsof@nextlevelcarwash.yjs3i.mongodb.net/vElectrix?retryWrites=true&w=majority',
+    ),
+    // imports: [
+    //   MongooseModule.forRoot(
+    //     'mongodb+srv://ravi:kcdvjryxs971d6vs@ravi.mkclc.mongodb.net/velectrix?retryWrites=true&w=majority',
+    //   ),
+    VehicleModule,
+    VehicleInformationModule,
+    AdminModule,
+    UserModule,
+    LoanTypeModule,
+    UploadTypeModule,
+    LoanModule,
+    LoanDetailsModule,
+    LoanPeriodModule,
+    VEnergyModule,
+    BrandModule,
+    BookRideModule,
+    ColorMappingModule,
+    StoresModule,
+    ImageModule,
+  ],
   controllers: [AppController],
   providers: [AppService, SharedService],
 })
