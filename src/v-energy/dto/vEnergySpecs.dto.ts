@@ -29,4 +29,6 @@ export class vEnergySpecsDto {
   venergyOpen: string;
   @ApiProperty()
   venergyClose: string;
+  @ApiProperty()
+  shopName: string;
 }
