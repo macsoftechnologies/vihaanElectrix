@@ -424,6 +424,10 @@ export class ColorMappingService {
             batteryCapacity: req.batteryCapacity,
 
             motorCapacity: req.motorCapacity,
+            wheelSize: req.wheelSize,
+            batteryWarranty: req.batteryWarranty,
+            motorWarranty: req.motorWarranty,
+            licenseRegistration: req.licenseRegistration,
           },
         },
       );
