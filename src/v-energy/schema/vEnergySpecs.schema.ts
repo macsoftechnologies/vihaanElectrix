@@ -22,6 +22,8 @@ export class vEnergySpecs {
   venergyOpen: string;
   @Prop()
   venergyClose: string;
+  @Prop()
+  shopName: string;
 }
 
 export const vEnergySpecsSchema = SchemaFactory.createForClass(vEnergySpecs);
