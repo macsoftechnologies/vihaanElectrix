@@ -402,7 +402,7 @@ export class ColorMappingService {
             mudGuards: req.mudGuards,
             seat: req.seat,
             throttle: req.throttle,
-            gradeability: req.gradeablity,
+            gradeablity: req.gradeablity,
             storage: req.storage,
             security: req.security,
             ladiesFootrest: req.ladiesFootrest,
