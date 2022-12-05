@@ -74,4 +74,17 @@ async find(@Query('rideId') rideId: string){
     };
     }
    }
+
+   @Post('/deleteBookRide')
+   async deleteBookRide(@Body() req: bookRideDto) {
+    try{    
+        const terminate = await this.bookRideService.deleteBookRide(req);
+        return terminate;
+    } catch(error) {
+        return {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            msg: error,
+        }
+    }
+   }
 }

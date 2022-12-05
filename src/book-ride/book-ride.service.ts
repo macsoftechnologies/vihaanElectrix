@@ -123,6 +123,29 @@ async docs() {
     }
 }
 
+async deleteBookRide(req: bookRideDto) {
+    try{
+        const terminate = await this.bookRideModel.deleteOne({rideId: req.rideId});
+        if(terminate) {
+            return {
+                statusCode: HttpStatus.OK,
+                msg: "Deleted Successfully",
+                data: terminate,
+            }
+        } else {
+            return {
+                statusCode: HttpStatus.BAD_REQUEST,
+                msg: "Invalid Request",
+            }
+        }
+    } catch(error) {
+        return {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            msg: error,
+        }
+    }
+}
+
 }
 
 

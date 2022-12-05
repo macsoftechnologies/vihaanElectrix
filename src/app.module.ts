@@ -19,6 +19,7 @@ import { SharedService } from './shared/shared.service';
 import { ColorMappingModule } from './color-mapping/color-mapping.module';
 import { StoresModule } from './stores/stores.module';
 import { ImageModule } from './image/image.module';
+import { LogoModule } from './logo/logo.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { ImageModule } from './image/image.module';
     ColorMappingModule,
     StoresModule,
     ImageModule,
+    LogoModule,
   ],
   controllers: [AppController],
   providers: [AppService, SharedService],
