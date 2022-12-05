@@ -19,7 +19,8 @@ export  class vEnergyDto{
     // longitude: string;
     // @ApiProperty()
     // latitude: string
-  
+    @ApiProperty()
+    deviceContactNo: string;
     
 }
 export class loc{

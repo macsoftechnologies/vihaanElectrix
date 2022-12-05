@@ -163,5 +163,17 @@ message: error.message,
 
 }
 
+    @Post('/updateVEnergy')
+    async updateVEnergy(@Body() req: vEnergyDto) {
+        try{
+            const moderate = await this.vEnergyService.updatevEnergy(req);
+            return moderate;
+        } catch(error) {
+            return {
+                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                msg: error,
+            }
+        }
+    }
 
 }

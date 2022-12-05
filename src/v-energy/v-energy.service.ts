@@ -283,5 +283,4 @@ export class VEnergyService {
       };
       return error_response;
     }
-  }
 }
