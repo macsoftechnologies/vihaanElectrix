@@ -5,21 +5,21 @@ import { v4 as uuid } from 'uuid';
 export class bookRide extends Document {
   @Prop({ required: true, default: uuid })
   rideId: string;
-  @Prop()
+  @Prop({ required: true })
   name: string;
-  @Prop()
+  @Prop({ required: true })
   aadharNo: string;
-  @Prop()
+  @Prop({ required: true })
   contactNo: string;
-  @Prop()
+  @Prop({ required: true })
   vehicleName: string;
-  @Prop()
+  @Prop({ required: true })
   address: string;
-  @Prop()
+  @Prop({ required: true })
   area: string;
-  @Prop()
+  @Prop({ required: true })
   landmark: string;
-  @Prop()
+  @Prop({ required: true })
   city: string;
   @Prop()
   vehicleImage: string;
