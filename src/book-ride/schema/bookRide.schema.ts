@@ -11,7 +11,7 @@ export class bookRide extends Document {
   aadharNo: string;
   @Prop({ required: true })
   contactNo: string;
-  @Prop({ required: true })
+  @Prop()
   vehicleName: string;
   @Prop({ required: true })
   address: string;
