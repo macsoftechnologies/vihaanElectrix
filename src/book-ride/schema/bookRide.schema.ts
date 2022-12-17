@@ -27,5 +27,7 @@ export class bookRide extends Document {
   brand: string;
   @Prop()
   date: string;
+  @Prop()
+  model: string;
 }
 export const bookRideSchema = SchemaFactory.createForClass(bookRide);

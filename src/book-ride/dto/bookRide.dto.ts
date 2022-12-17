@@ -20,6 +20,8 @@ export class bookRideDto {
   @ApiProperty()
   vehicleImage: string;
   @ApiProperty()
+  model: string;
+  @ApiProperty()
   date: string;
   @ApiProperty()
   createdAt: string;
