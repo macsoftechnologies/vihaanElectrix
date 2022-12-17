@@ -9,71 +9,71 @@ export class spec {
 export class colorMappingSpecs extends Document {
   @Prop({ required: true, unique: true, default: uuid })
   colorId: string;
-  @Prop({ default: '' })
+  @Prop()
   vehicleImage: [];
-  @Prop({ default: '' })
+  @Prop()
   colorImage: string;
-  @Prop({ default: '' })
+  @Prop()
   model: string;
   @Prop({ required: true, unique: true, default: uuid })
   vehicleId: string;
-  @Prop({ default: '' })
+  @Prop()
   vehicleName: string;
-  @Prop({ default: '' })
+  @Prop()
   tyre: string;
-  @Prop({ default: '' })
+  @Prop()
   motor: string;
-  @Prop({ default: '' })
+  @Prop()
   controller: string;
-  @Prop({ default: '' })
+  @Prop()
   battery: string;
-  @Prop({ default: '' })
+  @Prop()
   batteryCasing: string;
-  @Prop({ default: '' })
+  @Prop()
   cells: string;
-  @Prop({ default: '' })
+  @Prop()
   bms: string;
-  @Prop({ default: '' })
+  @Prop()
   chargerOutput: string;
-  @Prop({ default: '' })
+  @Prop()
   externalChargingPort: string;
-  @Prop({ default: '' })
+  @Prop()
   brake: string;
-  @Prop({ default: '' })
+  @Prop()
   regenerativeBraking: string;
-  @Prop({ default: '' })
+  @Prop()
   display: string;
-  @Prop({ default: '' })
+  @Prop()
   headLamp: string;
-  @Prop({ default: '' })
+  @Prop()
   reflector: string;
-  @Prop({ default: '' })
+  @Prop()
   blinkers: string;
-  @Prop({ default: '' })
+  @Prop()
   brakeLights: string;
-  @Prop({ default: '' })
+  @Prop()
   mudGuards: string;
-  @Prop({ default: '' })
+  @Prop()
   seat: string;
-  @Prop({ default: '' })
+  @Prop()
   throttle: string;
-  @Prop({ default: '' })
+  @Prop()
   gradeablity: string;
-  @Prop({ default: '' })
+  @Prop()
   storage: string;
-  @Prop({ default: '' })
+  @Prop()
   security: string;
-  @Prop({ default: '' })
+  @Prop()
   ladiesFootrest: string;
-  @Prop({ default: '' })
+  @Prop()
   amount: string;
-  @Prop({ default: '' })
+  @Prop()
   brandName: string;
-  @Prop({ default: '' })
+  @Prop()
   rim: string;
-  @Prop({ default: '' })
+  @Prop()
   specsImage: string;
-  @Prop({ default: '' })
+  @Prop()
   price: string;
   @Prop()
   speed: string;
