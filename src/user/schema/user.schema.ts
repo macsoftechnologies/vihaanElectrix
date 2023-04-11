@@ -7,12 +7,15 @@ export class users extends Document{
     @Prop({required : true , unique:true , default : uuid})
     userId: string
     @Prop()
-    fname: string
+    fullName: string
     @Prop()
     password : string
     @Prop()
     mobileNum: string
     @Prop()
-    email: string
+    address:string
+    @Prop()
+    verificationCode:string
+   
 }
 export const  usersSchema = SchemaFactory.createForClass(users);

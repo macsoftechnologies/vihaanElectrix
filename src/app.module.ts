@@ -20,6 +20,8 @@ import { ColorMappingModule } from './color-mapping/color-mapping.module';
 import { StoresModule } from './stores/stores.module';
 import { ImageModule } from './image/image.module';
 import { LogoModule } from './logo/logo.module';
+import { RoadsideAssistanceModule } from './roadside-assistance/roadside-assistance.module';
+import { EvServiceModule } from './ev-service/ev-service.module';
 
 @Module({
   imports: [
@@ -46,6 +48,8 @@ import { LogoModule } from './logo/logo.module';
     StoresModule,
     ImageModule,
     LogoModule,
+    RoadsideAssistanceModule,
+    EvServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService, SharedService],

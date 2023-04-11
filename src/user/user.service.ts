@@ -29,10 +29,9 @@ export class UserService {
                     message: "User Registered SuccessFully",
                     data: {
                         authentication: {
-                            FirstName: registerRes.fname,
-                            Email: registerRes.email,
-                            MobileNum: registerRes.mobileNum
-                        
+                            fullName: registerRes.fullName,
+                            MobileNum: registerRes.mobileNum,
+                            address:registerRes.address
                         }
                     }
                 }
@@ -55,7 +54,7 @@ export class UserService {
     async Login(req: userRegisterDto) {
         try {
 
-            const loginRes = await this.usersModel.findOne({ $or: [{ Email: req.email }, { MobileNum: req.mobileNum }] }).lean()
+            const loginRes = await this.usersModel.findOne({ $or: [ { MobileNum: req.mobileNum }] }).lean()
             if (loginRes) {
                 if (loginRes.password === req.password) {
 
@@ -63,7 +62,7 @@ export class UserService {
                         statusCode: HttpStatus.OK,
                         message: "Login SuccessFully",
                         authentication: {
-                            Email: loginRes.email
+                            mobileNum: loginRes.mobileNum
                         }
                     }
                 }

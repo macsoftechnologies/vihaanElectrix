@@ -6,15 +6,18 @@ export class userRegisterDto {
     userId: string
 
     @ApiProperty()
-    fName: string
+    fullName: string
     
-    @ApiProperty()
-    email: string
+    
     
     @ApiProperty()
     mobileNum: string
 
     @ApiProperty()
     password: string
+    @ApiProperty()
+    address:string
+    @ApiProperty()
+    verificationCode:string
 
 }
