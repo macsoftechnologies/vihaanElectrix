@@ -27,13 +27,9 @@ export class UserService {
                 return {
                     statusCode: HttpStatus.OK,
                     message: "User Registered SuccessFully",
-                    data: {
-                        authentication: {
-                            fullName: registerRes.fullName,
-                            MobileNum: registerRes.mobileNum,
-                            address:registerRes.address
-                        }
-                    }
+                    Req: registerRes
+                          
+                    
                 }
 
             }
@@ -53,39 +49,38 @@ export class UserService {
 
     async Login(req: userRegisterDto) {
         try {
-
-            const loginRes = await this.usersModel.findOne({ $or: [ { MobileNum: req.mobileNum }] }).lean()
-            if (loginRes) {
-                if (loginRes.password === req.password) {
-
-                    return {
-                        statusCode: HttpStatus.OK,
-                        message: "Login SuccessFully",
-                        authentication: {
-                            mobileNum: loginRes.mobileNum
-                        }
-                    }
-                }
-
-                return {
-                    statusCode: HttpStatus.UNAUTHORIZED,
-                    message: "Invalid Password"
-                }
-
-            }
+          const loginRes = await this.usersModel
+            .findOne({ mobileNum: req.mobileNum })
+            .lean();
+          if (loginRes) {
+            if (loginRes.password === req.password) {
+              return {
+                statusCode: HttpStatus.OK,
+                message: 'Login SuccessFully',
+                logindetails: loginRes,
+              };
+            } else {
+            
             return {
-                statusCode: HttpStatus.NOT_FOUND,
-                message: "User Not Found"
-
-            }
-        } catch (error) {
-            return {
-                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-                message: error.message,
+              statusCode: HttpStatus.BAD_REQUEST,
+              message: 'Invalid Password',
             };
+            }
+        } else {
+          return {
+            statusCode: HttpStatus.NOT_FOUND,
+            msg: 'User Not Found',
+          };
         }
-    }
-
+        } catch (error) {
+          return {
+            statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+            message: error.message,
+          };
+        }
+      }
+    
+    
     async usersList() {
         try {
     
@@ -111,6 +106,80 @@ export class UserService {
                 StatusCode: HttpStatus.INTERNAL_SERVER_ERROR,
                 Message: error
     
+            }
+        }
+    }
+
+    async getUser(params:userRegisterDto){
+        try{
+            const userResp=await this.usersModel.findOne({userId:params.userId})
+            if(userResp){
+                return {
+                    statusCode:HttpStatus.OK,
+                    message:'list of users',
+                    userReq:userResp
+                }
+            }
+            return {
+                StatusCode: HttpStatus.BAD_REQUEST,
+                Message: "InValid Request"
+            }
+        }catch(error){
+            return {
+                statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+                message:error 
+            }
+        }
+    }
+
+
+    async updateUser(params:userRegisterDto){
+        try{
+            const editRes=await this.usersModel.updateOne({userId:params.userId},
+                {$set:{
+                    fullName:params.fullName,
+                    address:params.address,
+                    password:params.password,
+                    mobileNum:params.mobileNum
+                }})
+             if(editRes){
+                return {
+                    statusCode:HttpStatus.OK,
+                    updateRes:editRes
+
+                }
+             }
+             return {
+                statusCode:HttpStatus.BAD_REQUEST,
+                message:'Invalid Request'
+             }
+        }catch(error){
+            return {
+                statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+                message:error 
+            }
+        }
+    }
+
+
+    async delUser(params:userRegisterDto){
+        try{
+            const delRes=await this.usersModel.deleteOne({userId:params.userId})
+            if(delRes){
+                return {
+                    statusCode:HttpStatus.OK,
+                    message:'deletd sucessfully',
+                    deluser:delRes
+                }
+            }
+            return {
+                statusCode:HttpStatus.BAD_REQUEST,
+                message:'invalid Request'
+            }
+        }catch(error){
+            return {
+                statuscode:HttpStatus.INTERNAL_SERVER_ERROR,
+                message:error 
             }
         }
     }

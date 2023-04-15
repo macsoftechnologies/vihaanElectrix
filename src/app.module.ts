@@ -22,6 +22,7 @@ import { ImageModule } from './image/image.module';
 import { LogoModule } from './logo/logo.module';
 import { RoadsideAssistanceModule } from './roadside-assistance/roadside-assistance.module';
 import { EvServiceModule } from './ev-service/ev-service.module';
+import { TechnicianModule } from './technician/technician.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { EvServiceModule } from './ev-service/ev-service.module';
     LogoModule,
     RoadsideAssistanceModule,
     EvServiceModule,
+    TechnicianModule,
   ],
   controllers: [AppController],
   providers: [AppService, SharedService],

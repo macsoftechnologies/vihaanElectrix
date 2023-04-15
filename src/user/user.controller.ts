@@ -27,10 +27,7 @@ export class UserController {
   }
   
   @Post('/login')
-  
-  @ApiCreatedResponse({ description: 'user details has been added successfully'})
-  @ApiForbiddenResponse({ description: 'forbidden.' }) 
-  async login(@Body() req:userRegisterDto ) {
+  async loginuser(@Body() req:userRegisterDto ) {
       try {
           const result = await this.userService.Login(req)
           return result
@@ -60,6 +57,47 @@ export class UserController {
       }
   }
 
+
+  @Post('/getUser')
+  async userGet(@Body() body:userRegisterDto){
+    try{
+        const response=await this.userService.getUser(body)
+        return response
+    }catch(error){
+        return {
+            statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+            message:error 
+        }
+    }
+  }
+
+
+  @Post('/updateUser')
+  async updateuser(@Body() body:userRegisterDto){
+    try{
+        const result=await this.userService.updateUser(body)
+        return result
+    }catch(error){
+        return {
+            statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+            message:error 
+        }
+    }
+  }
+
+  @Post('deleteUser')
+  async removeUser(@Body() body:userRegisterDto){
+    try{
+        const result=await this.userService.delUser(body)
+        return result
+    }catch(error){
+        return {
+            statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+            message:error 
+            
+        }
+    }
+  }
 }
 
 
