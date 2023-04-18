@@ -15,4 +15,8 @@ export class roadsideAssistanceDto {
     phNumber:string
     @ApiProperty()
     location:Locs[]
+    @ApiProperty()
+    technician:string
+    @ApiProperty()
+    user:string
 }

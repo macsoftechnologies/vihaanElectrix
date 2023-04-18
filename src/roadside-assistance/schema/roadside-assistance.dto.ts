@@ -12,6 +12,11 @@ export class roadsideAssistance extends Document{
     phNumber:string
     @Prop()
     location:[]
+    @Prop()
+    technician:string
+    @Prop()
+    user:string
+
 
 }
 

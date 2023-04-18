@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, Post, Put } from '@nestjs/common';
 import { RoadsideAssistanceService } from './roadside-assistance.service';
 import { roadsideAssistanceDto } from './dto/roadside-assistance.schema';
 
@@ -35,9 +35,9 @@ export class RoadsideAssistanceController {
 
     
     @Post('getRoadsideAsistanceByid')
-    async roadAssistanceid(@Body() req:roadsideAssistanceDto){
+    async roadAssistanceid(@Body() body:roadsideAssistanceDto){
       try{
-        const result=await this.roadsideAssistanceService.roadAssistanceGet(req)
+        const result=await this.roadsideAssistanceService.roadAssisfind(body)
         return result
       }catch(error){
         return {
@@ -47,5 +47,31 @@ export class RoadsideAssistanceController {
       }
     }
 
-    
+
+    @Post('/assingedTechnician')
+    async technicianassign(@Body() body:roadsideAssistanceDto){
+      try{
+        const response=await this.roadsideAssistanceService.assingedworker(body)
+        return response
+      }catch(error){
+        return {
+          statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+          message:error 
+        }
+      }
+    }
+   
+
+    @Post('/deleteRoadAssistance')
+    async removeAsistance(@Body() body:roadsideAssistanceDto){
+      try{
+        const response=await this.roadsideAssistanceService.delroadAsistance(body)
+        return response
+      }catch(error){
+        return {
+          statusCode:HttpStatus.INTERNAL_SERVER_ERROR,
+          message:error
+        }
+      }
+    }
 }

@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import {Document} from 'mongoose';
+import {v4 as uuid} from 'uuid';
 
 @Schema({timestamps:true})
 export class technician extends Document{
-@Prop()
+@Prop({default:uuid,unique:true})
 technicianId:string
 @Prop()
 name:string
